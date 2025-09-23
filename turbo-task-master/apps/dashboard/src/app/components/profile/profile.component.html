@@ -1,0 +1,87 @@
+<div class="min-h-screen bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="w-full max-w-6xl mx-auto p-4 sm:p-6 lg:p-8">
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2">Profile</h1>
+      <p class="text-gray-600 dark:text-gray-400">Manage your account settings and preferences</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <!-- Profile Information -->
+      <div class="lg:col-span-2">
+        <mat-card class="shadow-sm border border-gray-200 dark:border-gray-700">
+          <mat-card-header>
+            <mat-card-title class="flex items-center">
+              <mat-icon fontIcon="person" class="mr-2 text-blue-600"></mat-icon>
+              Personal Information
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="p-6">
+            <div *ngIf="user$ | async as user" class="space-y-4">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">First Name</label>
+                  <p class="text-gray-900 dark:text-white">{{ user.firstName }}</p>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Last Name</label>
+                  <p class="text-gray-900 dark:text-white">{{ user.lastName }}</p>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Username</label>
+                  <p class="text-gray-900 dark:text-white">{{ user.username }}</p>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
+                  <p class="text-gray-900 dark:text-white">{{ user.email }}</p>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Role</label>
+                  <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                    {{ user.role | titlecase }}
+                  </span>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Member Since</label>
+                  <p class="text-gray-900 dark:text-white">{{ user.createdAt | date:'medium' }}</p>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <!-- Account Actions -->
+      <div>
+        <mat-card class="shadow-sm border border-gray-200 dark:border-gray-700">
+          <mat-card-header>
+            <mat-card-title class="flex items-center">
+              <mat-icon fontIcon="settings" class="mr-2 text-green-600"></mat-icon>
+              Account Actions
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="p-6">
+            <div class="space-y-3">
+              <button mat-raised-button color="primary" class="w-full">
+                <mat-icon fontIcon="edit" class="mr-2"></mat-icon>
+                Edit Profile
+              </button>
+              <button mat-stroked-button class="w-full">
+                <mat-icon fontIcon="lock" class="mr-2"></mat-icon>
+                Change Password
+              </button>
+              <button mat-stroked-button class="w-full">
+                <mat-icon fontIcon="notifications" class="mr-2"></mat-icon>
+                Notification Settings
+              </button>
+              <mat-divider class="my-4"></mat-divider>
+              <button mat-stroked-button color="warn" class="w-full" (click)="logout()">
+                <mat-icon fontIcon="logout" class="mr-2"></mat-icon>
+                Sign Out
+              </button>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

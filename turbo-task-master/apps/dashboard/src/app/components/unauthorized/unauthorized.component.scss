@@ -1,0 +1,23 @@
+// Unauthorized component styles
+.unauthorized-container {
+  .mat-mdc-card {
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+    .dark-theme & {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  .mat-mdc-raised-button,
+  .mat-mdc-stroked-button {
+    border-radius: 8px;
+    font-weight: 600;
+    text-transform: none;
+    transition: all 0.2s ease-in-out;
+    
+    &:hover {
+      transform: translateY(-1px);
+    }
+  }
+}

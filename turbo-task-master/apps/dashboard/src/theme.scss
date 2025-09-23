@@ -1,0 +1,209 @@
+// Import Angular Material prebuilt theme
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+// Custom component styles
+.mat-mdc-card {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  
+  .dark-theme & {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    background: #1e1e1e;
+  }
+}
+
+// Theme-specific form field styling
+.mat-mdc-form-field {
+  .mdc-text-field--outlined {
+    .mdc-notched-outline {
+      border-color: #d1d5db;
+    }
+    
+    &:hover .mdc-notched-outline {
+      border-color: #9ca3af;
+    }
+    
+    &.mdc-text-field--focused .mdc-notched-outline {
+      border-color: #3b82f6;
+    }
+  }
+  
+  .mdc-floating-label {
+    color: #374151;
+    
+    &.mdc-floating-label--float-above {
+      color: #3b82f6;
+    }
+  }
+  
+  .mdc-text-field__input {
+    color: #111827;
+    
+    &::placeholder {
+      color: #9ca3af;
+    }
+  }
+  
+  // Error state
+  &.mat-form-field-invalid {
+    .mdc-text-field--outlined .mdc-notched-outline {
+      border-color: #ef4444;
+    }
+    
+    .mdc-floating-label {
+      color: #ef4444;
+    }
+  }
+}
+
+// Select field styling
+.mat-mdc-select {
+  .mdc-select__anchor {
+    border-radius: 8px;
+    min-height: 48px;
+    padding: 12px 16px;
+    transition: all 0.2s ease-in-out;
+    
+    .mdc-select__selected-text {
+      color: #111827;
+      font-size: 0.875rem;
+    }
+  }
+  
+  .mdc-select__dropdown-icon {
+    color: #6b7280;
+  }
+  
+  &:hover .mdc-select__anchor {
+    border-color: #9ca3af;
+  }
+  
+  &.mdc-select--focused .mdc-select__anchor {
+    border-color: #3b82f6;
+    border-width: 2px;
+  }
+}
+
+// Button styling
+.mat-mdc-button {
+  border-radius: 8px;
+  text-transform: none;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+.mat-mdc-raised-button {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+  }
+}
+
+// Error messages
+.mat-mdc-error {
+  color: #ef4444;
+  font-size: 0.75rem;
+  margin-top: 4px;
+  display: block;
+}
+
+// Hint text
+.mat-mdc-hint {
+  color: #6b7280;
+  font-size: 0.75rem;
+  margin-top: 4px;
+}
+
+// Dialog styling
+.mat-mdc-dialog-container {
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  
+  .mdc-dialog__surface {
+    border-radius: 12px;
+  }
+  
+  .mdc-dialog__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    padding: 24px 24px 0 24px;
+  }
+  
+  .mdc-dialog__content {
+    padding: 24px;
+    color: #374151;
+  }
+  
+  .mdc-dialog__actions {
+    padding: 0 24px 24px 24px;
+    border-top: 1px solid #e5e7eb;
+    margin-top: 16px;
+    padding-top: 16px;
+  }
+}
+
+// Task board specific styles
+.task-board {
+  .mat-mdc-card {
+    border: 1px solid #e0e0e0;
+    
+    .dark-theme & {
+      border-color: #424242;
+    }
+  }
+}
+
+// Priority indicators
+.priority-low {
+  color: #4caf50;
+}
+
+.priority-medium {
+  color: #ff9800;
+}
+
+.priority-high {
+  color: #f44336;
+}
+
+.priority-urgent {
+  color: #9c27b0;
+  font-weight: bold;
+}
+
+// Status indicators
+.status-todo {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  
+  .dark-theme & {
+    background-color: #1a237e;
+    color: #90caf9;
+  }
+}
+
+.status-in-progress {
+  background-color: #fff3e0;
+  color: #f57c00;
+  
+  .dark-theme & {
+    background-color: #e65100;
+    color: #ffb74d;
+  }
+}
+
+.status-done {
+  background-color: #e8f5e8;
+  color: #388e3c;
+  
+  .dark-theme & {
+    background-color: #1b5e20;
+    color: #a5d6a7;
+  }
+}
+
+// Icon container fixes to prevent clipping - using Tailwind classes instead

@@ -1,0 +1,38 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="w-full max-w-md sm:max-w-lg p-4 sm:p-6">
+    <mat-card class="shadow-lg border border-gray-200 dark:border-gray-700">
+      <mat-card-content class="p-8 text-center">
+        <div class="mb-6">
+          <div class="mx-auto w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mb-4">
+            <mat-icon fontIcon="block" class="text-red-600 dark:text-red-400 text-3xl"></mat-icon>
+          </div>
+          <h1 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+            Access Denied
+          </h1>
+          <p class="text-gray-600 dark:text-gray-400">
+            You don't have permission to access this resource.
+          </p>
+        </div>
+        
+        <div class="space-y-3">
+          <button 
+            mat-raised-button 
+            color="primary"
+            (click)="goBack()"
+            class="w-full">
+            <mat-icon fontIcon="arrow_back" class="mr-2"></mat-icon>
+            Go Back
+          </button>
+          
+          <button 
+            mat-stroked-button
+            (click)="goToLogin()"
+            class="w-full">
+            <mat-icon fontIcon="login" class="mr-2"></mat-icon>
+            Sign In Again
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

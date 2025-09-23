@@ -1,0 +1,105 @@
+{
+    "id": 4,
+    "title": "complete task A and B",
+    "description": "ensure both A and B are done",
+    "sla": "48hr",
+    "owner": "editor",
+    "type": "work"
+}
+
+{
+    "id": 5,
+    "title": "do task X and Y",
+    "description": "both X and Y need attention",
+    "sla": "96hr",
+    "owner": "admin",
+    "type": "work"
+}
+
+{
+    "id": 6,
+    "title": "perform A and B tasks",
+    "description": "both tasks A and B are required",
+    "sla": "24hr",
+    "owner": "manager",
+    "type": "work"
+}
+
+{
+    "id": 7,
+    "title": "finish task 1 and 2",
+    "description": "both tasks 1 and 2 should be completed",
+    "sla": "12hr",
+    "owner": "viewer",
+    "type": "work"
+}
+
+
+{
+    "id": 8,
+    "title": "resolve issue 1 and 2",
+    "description": "fix both issue 1 and issue 2",
+    "sla": "72hr",
+    "owner": "editor",
+    "type": "work"
+}
+
+
+{
+    "id": 9,
+    "title": "complete task alpha and beta",
+    "description": "task alpha and beta must be finished",
+    "sla": "48hr",
+    "owner": "viewer",
+    "type": "work"
+}
+
+
+{
+    "id": 9,
+    "title": "complete task alpha and beta",
+    "description": "task alpha and beta must be finished",
+    "sla": "48hr",
+    "owner": "viewer",
+    "type": "work"
+}
+
+
+{
+    "id": 10,
+    "title": "accomplish job A and B",
+    "description": "complete job A and job B",
+    "sla": "96hr",
+    "owner": "admin",
+    "type": "work"
+}
+
+
+{
+    "id": 11,
+    "title": "work on project 1 and 2",
+    "description": "both project 1 and project 2 need work",
+    "sla": "72hr",
+    "owner": "editor",
+    "type": "work"
+}
+
+
+{
+    "id": 12,
+    "title": "finish task 3 and 4",
+    "description": "tasks 3 and 4 must be completed",
+    "sla": "36hr",
+    "owner": "manager",
+    "type": "work"
+}
+
+
+{
+    "id": 13,
+    "title": "do job A and C",
+    "description": "both job A and job C need to be completed",
+    "sla": "48hr",
+    "owner": "viewer",
+    "type": "work"
+}

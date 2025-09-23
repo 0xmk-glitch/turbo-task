@@ -1,0 +1,87 @@
+// Login component specific styles
+.login-container {
+  // Ensure proper spacing and layout
+  .mat-mdc-card {
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+    .dark-theme & {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  // Form field styling
+  .mat-mdc-form-field {
+    .mdc-text-field--outlined {
+      .mdc-notched-outline {
+        border-radius: 8px;
+        transition: border-color 0.2s ease-in-out;
+      }
+      
+      &:hover .mdc-notched-outline {
+        border-color: #9ca3af;
+      }
+      
+      &.mdc-text-field--focused .mdc-notched-outline {
+        border-color: #3b82f6;
+        border-width: 2px;
+      }
+    }
+    
+    .mdc-floating-label {
+      font-weight: 500;
+    }
+  }
+
+  // Button styling
+  .mat-mdc-raised-button {
+    border-radius: 8px;
+    font-weight: 600;
+    text-transform: none;
+    transition: all 0.2s ease-in-out;
+    
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+    
+    &:disabled {
+      transform: none;
+      box-shadow: none;
+    }
+  }
+
+  .mat-mdc-stroked-button {
+    border-radius: 6px;
+    font-weight: 500;
+    text-transform: none;
+    transition: all 0.2s ease-in-out;
+    
+    &:hover {
+      background-color: #f3f4f6;
+      
+      .dark-theme & {
+        background-color: #374151;
+      }
+    }
+  }
+
+  // Error styling
+  .error-snackbar {
+    background-color: #ef4444;
+    color: white;
+  }
+
+  // Demo users grid
+  .demo-users-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  // Loading spinner
+  .mat-mdc-progress-spinner {
+    width: 20px;
+    height: 20px;
+  }
+}

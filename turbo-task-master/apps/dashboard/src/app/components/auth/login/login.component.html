@@ -1,0 +1,137 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="w-full max-w-md sm:max-w-lg space-y-8">
+    <!-- Header -->
+    <div class="text-center">
+      <div class="flex justify-center">
+        <div class="p-3 bg-blue-100 dark:bg-blue-900/30 rounded-full">
+          <mat-icon fontIcon="task_alt" class="text-blue-600 dark:text-blue-400 text-4xl"></mat-icon>
+        </div>
+      </div>
+      <h2 class="mt-6 text-3xl font-bold text-gray-900 dark:text-white">
+        Welcome Back
+      </h2>
+      <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+        Sign in to your Turbo Task Manager account
+      </p>
+    </div>
+
+    <!-- Login Form -->
+    <mat-card class="shadow-lg border border-gray-200 dark:border-gray-700">
+      <mat-card-content class="p-8">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-6">
+          <!-- Username Field -->
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Username</mat-label>
+            <input 
+              matInput 
+              formControlName="username" 
+              placeholder="Enter your username"
+              autocomplete="username"
+              class="text-gray-900 dark:text-white">
+            <mat-icon matPrefix fontIcon="person" class="text-gray-400 mr-2"></mat-icon>
+            <mat-error *ngIf="isFieldInvalid('username')">
+              {{ getFieldError('username') }}
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Password Field -->
+          <mat-form-field appearance="outline" class="w-full">
+            <mat-label>Password</mat-label>
+            <input 
+              matInput 
+              [type]="hidePassword ? 'password' : 'text'"
+              formControlName="password" 
+              placeholder="Enter your password"
+              autocomplete="current-password"
+              class="text-gray-900 dark:text-white">
+            <mat-icon matPrefix fontIcon="lock" class="text-gray-400 mr-2"></mat-icon>
+            <button 
+              mat-icon-button 
+              matSuffix 
+              type="button"
+              (click)="togglePasswordVisibility()"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hidePassword">
+              <mat-icon [fontIcon]="hidePassword ? 'visibility_off' : 'visibility'"></mat-icon>
+            </button>
+            <mat-error *ngIf="isFieldInvalid('password')">
+              {{ getFieldError('password') }}
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Error Display -->
+          <div *ngIf="error$ | async as error" class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
+            <div class="flex items-center">
+              <mat-icon fontIcon="error" class="text-red-500 mr-2"></mat-icon>
+              <span class="text-red-700 dark:text-red-300 text-sm">{{ error }}</span>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button 
+            mat-raised-button 
+            color="primary"
+            type="submit"
+            [disabled]="loginForm.invalid || (isLoading$ | async)"
+            class="w-full h-12 text-lg font-medium">
+            <mat-spinner *ngIf="isLoading$ | async" diameter="20" class="mr-2"></mat-spinner>
+            <mat-icon *ngIf="!(isLoading$ | async)" fontIcon="login" class="mr-2"></mat-icon>
+            {{ (isLoading$ | async) ? 'Signing In...' : 'Sign In' }}
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Demo Users Section -->
+    <mat-card class="shadow-sm border border-gray-200 dark:border-gray-700">
+      <mat-card-header>
+        <mat-card-title class="text-lg font-medium text-gray-900 dark:text-white flex items-center">
+          <mat-icon fontIcon="info" class="mr-2 text-blue-600"></mat-icon>
+          Demo Users
+        </mat-card-title>
+        <mat-card-subtitle class="text-gray-600 dark:text-gray-400">
+          Click any button to auto-fill credentials
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content class="p-4">
+        <div class="grid grid-cols-2 gap-3">
+          <button 
+            mat-stroked-button 
+            (click)="loginAsAdmin()"
+            class="text-xs">
+            <mat-icon fontIcon="admin_panel_settings" class="mr-1 text-sm"></mat-icon>
+            Admin
+          </button>
+          <button 
+            mat-stroked-button 
+            (click)="loginAsManager()"
+            class="text-xs">
+            <mat-icon fontIcon="manage_accounts" class="mr-1 text-sm"></mat-icon>
+            Manager
+          </button>
+          <button 
+            mat-stroked-button 
+            (click)="loginAsUser()"
+            class="text-xs">
+            <mat-icon fontIcon="person" class="mr-1 text-sm"></mat-icon>
+            User
+          </button>
+          <button 
+            mat-stroked-button 
+            (click)="loginAsViewer()"
+            class="text-xs">
+            <mat-icon fontIcon="visibility" class="mr-1 text-sm"></mat-icon>
+            Viewer
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Footer -->
+    <div class="text-center">
+      <p class="text-xs text-gray-500 dark:text-gray-400">
+        &copy; 2025 Turbo Task Manager. All rights reserved.
+      </p>
+    </div>
+  </div>
+</div>

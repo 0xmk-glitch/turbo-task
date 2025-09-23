@@ -1,0 +1,41 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="w-full max-w-md sm:max-w-lg p-4 sm:p-6">
+    <mat-card class="shadow-lg border border-gray-200 dark:border-gray-700">
+      <mat-card-content class="p-8 text-center">
+        <div class="mb-6">
+          <div class="mx-auto w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-4">
+            <mat-icon fontIcon="search_off" class="text-blue-600 dark:text-blue-400 text-3xl"></mat-icon>
+          </div>
+          <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-2">
+            404
+          </h1>
+          <h2 class="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-2">
+            Page Not Found
+          </h2>
+          <p class="text-gray-600 dark:text-gray-400">
+            The page you're looking for doesn't exist or has been moved.
+          </p>
+        </div>
+        
+        <div class="space-y-3">
+          <button 
+            mat-raised-button 
+            color="primary"
+            (click)="goHome()"
+            class="w-full">
+            <mat-icon fontIcon="home" class="mr-2"></mat-icon>
+            Go Home
+          </button>
+          
+          <button 
+            mat-stroked-button
+            (click)="goBack()"
+            class="w-full">
+            <mat-icon fontIcon="arrow_back" class="mr-2"></mat-icon>
+            Go Back
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

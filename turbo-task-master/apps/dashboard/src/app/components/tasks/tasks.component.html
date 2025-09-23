@@ -1,0 +1,49 @@
+<p-table
+  [value]="tasklist"
+  [tableStyle]="{ 'min-width': '50rem', height: '100%' }"
+>
+<!-- Table caption -->
+  <ng-template #caption>
+    <div class="flex items-center justify-between">
+      <span class="text-xl font-bold">Tasks</span>
+      <p-button icon="pi pi-pencil" label="New Task" iconPos="right" />
+    </div>
+  </ng-template>
+
+<!-- Table Cloumn Headers -->
+  <ng-template #header>
+    <tr>
+      <th>Id</th>
+      <th>Task Title</th>
+      <th>SLA</th>
+      <th>Created User</th>
+      <th>Type</th>
+    </tr>
+  </ng-template>
+
+<!-- Table Rows -->
+  <ng-template #body let-item>
+    <tr>
+      <td>{{ item.id }}</td>
+      <td>{{ item.title }}</td>
+      <td>{{ item.sla }}</td>
+      <td>{{ item.owner }}</td>
+      <td>
+        <p-tag severity="info" value="{{ item.type }}" />
+        <!-- <p-tag value={{ item.type }} /> -->
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template  pTemplate="emptymessage" let-columns>
+    <tr>
+      <td colspan="5">
+        <div class="flex justify-center items-center h-[250px] text-gray-500">
+          No products found.
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+
+  
+</p-table>

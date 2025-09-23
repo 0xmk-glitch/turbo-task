@@ -1,0 +1,233 @@
+  <div class="w-full max-w-[140rem] mx-auto space-y-6">
+    <!-- Task Statistics Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <!-- Total Tasks Card -->
+      <mat-card class="bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800 hover:shadow-md transition-shadow duration-200">
+        <mat-card-content class="p-4 overflow-visible">
+          <div class="flex items-center justify-between overflow-visible">
+            <div class="flex-1">
+              <p class="text-sm font-medium text-blue-600 dark:text-blue-400 mb-1">Total Tasks</p>
+              <p class="text-2xl font-bold text-blue-900 dark:text-blue-100">{{ getTotalTasks() }}</p>
+            </div>
+            <div class="p-3 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 overflow-visible">
+              <mat-icon fontIcon="assignment" class="text-blue-500 text-xl sm:text-2xl"></mat-icon>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- In Progress Card -->
+      <mat-card class="bg-yellow-50 dark:bg-yellow-900/20 border-yellow-200 dark:border-yellow-800 hover:shadow-md transition-shadow duration-200">
+        <mat-card-content class="p-4 overflow-visible">
+          <div class="flex items-center justify-between overflow-visible">
+            <div class="flex-1">
+              <p class="text-sm font-medium text-yellow-600 dark:text-yellow-400 mb-1">In Progress</p>
+              <p class="text-2xl font-bold text-yellow-900 dark:text-yellow-100">{{ getInProgressTasks() }}</p>
+            </div>
+            <div class="p-3 bg-yellow-100 dark:bg-yellow-900/30 rounded-lg flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 overflow-visible">
+              <mat-icon fontIcon="work" class="text-yellow-500 text-xl sm:text-2xl"></mat-icon>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      
+
+      <!-- Completed Card -->
+      <mat-card class="bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800 hover:shadow-md transition-shadow duration-200">
+        <mat-card-content class="p-4 overflow-visible">
+          <div class="flex items-center justify-between overflow-visible">
+            <div class="flex-1">
+              <p class="text-sm font-medium text-green-600 dark:text-green-400 mb-1">Completed</p>
+              <p class="text-2xl font-bold text-green-900 dark:text-green-100">{{ getCompletedTasks() }}</p>
+            </div>
+            <div class="p-3 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 overflow-visible">
+              <mat-icon fontIcon="check_circle" class="text-green-500 text-xl sm:text-2xl"></mat-icon>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Overdue Card -->
+      <mat-card class="bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800 hover:shadow-md transition-shadow duration-200">
+        <mat-card-content class="p-4 overflow-visible">
+          <div class="flex items-center justify-between overflow-visible">
+            <div class="flex-1">
+              <p class="text-sm font-medium text-red-600 dark:text-red-400 mb-1">Overdue</p>
+              <p class="text-2xl font-bold text-red-900 dark:text-red-100">{{ getOverdueTasks() }}</p>
+            </div>
+            <div class="p-3 bg-red-100 dark:bg-red-900/30 rounded-lg flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 overflow-visible">
+              <mat-icon fontIcon="warning" class="text-red-500 text-xl sm:text-2xl"></mat-icon>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+
+    <!-- Task Actions Bar -->
+    <mat-card class="shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow duration-200">
+      <mat-card-content class="p-4">
+        <div class="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-4">
+          <!-- Action Buttons -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full xl:w-auto">
+            <button 
+              mat-raised-button 
+              color="primary" 
+              (click)="openCreateTaskDialog()" 
+              class="w-full sm:w-auto min-w-[140px] h-10">
+              <mat-icon fontIcon="add" class="mr-2"></mat-icon>
+              Create Task
+            </button>
+            <button 
+              mat-stroked-button 
+              (click)="refreshTasks()" 
+              class="w-full sm:w-auto min-w-[120px] h-10">
+              <mat-icon fontIcon="refresh" class="mr-2"></mat-icon>
+              Refresh
+            </button>
+          </div>
+          
+          <!-- Filters and Search -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full xl:w-auto">
+            <mat-form-field appearance="outline" class="w-full sm:w-48">
+              <mat-label>Filter by Priority</mat-label>
+              <mat-select [(value)]="selectedPriority" (selectionChange)="filterTasks()">
+                <mat-option value="">
+                  <div class="flex items-center space-x-2">
+                    <mat-icon fontIcon="filter_list" class="text-sm text-gray-600"></mat-icon>
+                    <span>All Priorities</span>
+                  </div>
+                </mat-option>
+                <mat-option value="1">
+                  <div class="flex items-center space-x-2">
+                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <span>Low</span>
+                  </div>
+                </mat-option>
+                <mat-option value="2">
+                  <div class="flex items-center space-x-2">
+                    <div class="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                    <span>Medium</span>
+                  </div>
+                </mat-option>
+                <mat-option value="3">
+                  <div class="flex items-center space-x-2">
+                    <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
+                    <span>High</span>
+                  </div>
+                </mat-option>
+                <mat-option value="4">
+                  <div class="flex items-center space-x-2">
+                    <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                    <span>Urgent</span>
+                  </div>
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            
+            <mat-form-field appearance="outline" class="w-full sm:w-48">
+              <mat-label>Search Tasks</mat-label>
+              <input matInput [(ngModel)]="searchTerm" (input)="filterTasks()" placeholder="Search tasks...">
+              <mat-icon matSuffix fontIcon="search"></mat-icon>
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+
+    <!-- Main Task Board -->
+    <mat-card class="shadow-sm border border-gray-200 dark:border-gray-700 w-full min-h-96 hover:shadow-md transition-shadow duration-200">
+      <mat-card-header class="pb-4">
+        <mat-card-title class="text-xl font-semibold flex items-center text-gray-900 dark:text-white">
+          <div class="flex items-center space-x-3">
+            <div class="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
+              <mat-icon fontIcon="dashboard" class="text-blue-600 dark:text-blue-400 text-xl"></mat-icon>
+            </div>
+            <div>
+              <span>Tasks Board</span>
+              <p class="text-sm font-normal text-gray-600 dark:text-gray-400 mt-1">
+                Organize your tasks by category and status
+              </p>
+            </div>
+          </div>
+        </mat-card-title>
+  </mat-card-header>
+    <mat-card-content class="pt-0">
+      <mat-tab-group 
+        animationDuration="200ms" 
+        [(selectedIndex)]="selectedTabIndex"
+        class="task-tabs">
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div class="flex items-center space-x-2 px-2 py-1">
+              <mat-icon fontIcon="work" class="text-sm text-blue-600"></mat-icon>
+              <span class="hidden sm:inline">Work</span>
+              <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs px-2 py-1 rounded-full ml-1">
+                {{ getTotalTasksByType('work') }}
+              </span>
+            </div>
+          </ng-template>
+          <ng-template matTabContent>
+            <div class="mt-4">
+        <app-task-board
+                [tasksByStatus]="filteredTasks['work']"
+                (taskEdit)="onTaskEdit($event)"
+                (taskDelete)="onTaskDelete($event)"
+                (taskStatusChange)="onTaskStatusChange($event)"
+                class="block"
+              />
+            </div>
+          </ng-template>
+      </mat-tab>
+        
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div class="flex items-center space-x-2 px-2 py-1">
+              <mat-icon fontIcon="person" class="text-sm text-green-600"></mat-icon>
+              <span class="hidden sm:inline">Personal</span>
+              <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs px-2 py-1 rounded-full ml-1">
+                {{ getTotalTasksByType('personal') }}
+              </span>
+            </div>
+          </ng-template>
+          <ng-template matTabContent>
+            <div class="mt-4">
+        <app-task-board
+                [tasksByStatus]="filteredTasks['personal']"
+                (taskEdit)="onTaskEdit($event)"
+                (taskDelete)="onTaskDelete($event)"
+                (taskStatusChange)="onTaskStatusChange($event)"
+                class="block"
+              />
+            </div>
+          </ng-template>
+      </mat-tab>
+        
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <div class="flex items-center space-x-2 px-2 py-1">
+              <mat-icon fontIcon="home" class="text-sm text-purple-600"></mat-icon>
+              <span class="hidden sm:inline">Home</span>
+              <span class="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-xs px-2 py-1 rounded-full ml-1">
+                {{ getTotalTasksByType('home') }}
+              </span>
+            </div>
+          </ng-template>
+          <ng-template matTabContent>
+            <div class="mt-4">
+        <app-task-board
+                [tasksByStatus]="filteredTasks['home']"
+                (taskEdit)="onTaskEdit($event)"
+                (taskDelete)="onTaskDelete($event)"
+                (taskStatusChange)="onTaskStatusChange($event)"
+                class="block"
+              />
+            </div>
+          </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>
+</div>
