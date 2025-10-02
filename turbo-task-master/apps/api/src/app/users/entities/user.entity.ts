@@ -1,10 +1,18 @@
-import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
-import { Role } from '../../../../../../libs/auth/enum/role.enum';
+import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
+import { Organization } from '../../organizations/entities/organization.entity';
+import { Task } from '../../tasks/entities/task.entity';
+import { AuditLog } from '../../audit/entities/audit-log.entity';
+
+export enum UserRole {
+  ADMIN = 'admin',
+  OWNER = 'owner',
+  VIEWER = 'viewer'
+}
 
 @Entity({ name: 'users' })
 export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column({ unique: true })
   email: string;
@@ -15,11 +23,15 @@ export class User {
   @Column()
   password: string;
 
-  @Column({ type: 'text', enum: Role, default: Role.VIEWER })
-  role: Role;
+  @Column('uuid')
+  organizationId: string;
 
-  @Column()
-  orgId: number;
+  @Column({
+    type: 'enum',
+    enum: UserRole,
+    default: UserRole.ADMIN
+  })
+  role?: UserRole;
 
   @Column({ default: true })
   isActive: boolean;
@@ -29,4 +41,17 @@ export class User {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @ManyToOne(() => Organization, organization => organization.users)
+  @JoinColumn({ name: 'organizationId' })
+  organization: Organization;
+
+  @OneToMany(() => Task, task => task.createdBy)
+  createdTasks: Task[];
+
+  @OneToMany(() => Task, task => task.assignedTo)
+  assignedTasks: Task[];
+
+  @OneToMany(() => AuditLog, auditLog => auditLog.user)
+  auditLogs: AuditLog[];
 }

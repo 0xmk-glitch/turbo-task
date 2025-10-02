@@ -18,8 +18,8 @@ export enum TaskPriority {
 
 @Entity({ name: 'tasks' })
 export class Task {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
   title: string;
@@ -36,17 +36,20 @@ export class Task {
   @Column({ type: 'int', enum: TaskPriority, default: TaskPriority.MEDIUM })
   priority: TaskPriority;
 
-  @Column()
-  orgId: number;
+  @Column('uuid')
+  organizationId: string;
 
-  @Column()
-  createdBy: number;
+  @Column('uuid')
+  createdBy: string;
 
-  @Column({ nullable: true })
-  assignedTo: number;
+  @Column('uuid', { nullable: true })
+  assignedTo: string;
 
   @Column({ type: 'date', nullable: true })
   dueDate: Date;
+
+  @Column({ default: false })
+  isDeleted: boolean;
 
   @CreateDateColumn()
   createdAt: Date;
@@ -54,15 +57,15 @@ export class Task {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @ManyToOne(() => User, { nullable: false })
+  @ManyToOne(() => User, user => user.createdTasks, { nullable: false })
   @JoinColumn({ name: 'createdBy' })
   creator: User;
 
-  @ManyToOne(() => User, { nullable: true })
+  @ManyToOne(() => User, user => user.assignedTasks, { nullable: true })
   @JoinColumn({ name: 'assignedTo' })
   assignee: User;
 
-  @ManyToOne(() => Organization, { nullable: false })
-  @JoinColumn({ name: 'orgId' })
+  @ManyToOne(() => Organization, organization => organization.tasks, { nullable: false })
+  @JoinColumn({ name: 'organizationId' })
   organization: Organization;
 }

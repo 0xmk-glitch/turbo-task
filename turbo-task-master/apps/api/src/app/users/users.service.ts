@@ -11,7 +11,7 @@ export class UsersService {
     @InjectRepository(User) private readonly userRepository: Repository<User>
   ) {}
 
-  async create(createUserDto: any) {
+  async create(createUserDto: CreateUserDto) {
     const user = this.userRepository.create(createUserDto);
     return await this.userRepository.save(user);
   }
@@ -20,9 +20,10 @@ export class UsersService {
     return this.userRepository.find();
   }
 
-  async findOne(id: number) {
-    const user = await this.userRepository.findOneBy({
-      id: id,
+  async findOne(id: string) {
+    const user = await this.userRepository.findOne({
+      where: { id },
+      relations: ['organization'],
     });
     return user;
   }
@@ -34,21 +35,21 @@ export class UsersService {
     return user;
   }
 
-  async update(id: number, updateUserDto: UpdateUserDto) {
+  async update(id: string, updateUserDto: UpdateUserDto) {
     await this.userRepository.update(id, updateUserDto);
 
     const updatedUser = await this.userRepository.findOne({ where: { id } });
     return updatedUser;
   }
 
-  async remove(id: number) {
+  async remove(id: string) {
     const deleteUser = await this.userRepository.delete(id);
     return deleteUser;
   }
 
-  async findByOrganization(orgId: number) {
+  async findByOrganization(orgId: string) {
     return await this.userRepository.find({
-      where: { orgId, isActive: true },
+      where: { organizationId: orgId, isActive: true },
     });
   }
 }

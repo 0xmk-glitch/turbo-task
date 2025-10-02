@@ -11,25 +11,25 @@ export class TasksService {
     @InjectRepository(Task) private readonly taskReposistory: Repository<Task>
   ) {}
 
-  async create(createTaskDto: any, userId: number, orgId: number) {
+  async create(createTaskDto: CreateTaskDto, userId: string, orgId: string) {
     const task = this.taskReposistory.create({
       ...createTaskDto,
       createdBy: userId,
-      orgId: orgId,
-    });
+      organizationId: orgId,
+      assignedTo: createTaskDto.assignedTo ? createTaskDto.assignedTo : userId
     return await this.taskReposistory.save(task);
   }
 
-  async findAll(orgId?: number) {
-    const whereClause = orgId ? { orgId } : {};
+  async findAll(orgId?: string) {
+    const whereClause = orgId ? { organizationId: orgId } : {};
     return this.taskReposistory.find({
       where: whereClause,
       relations: ['creator', 'assignee', 'organization'],
     });
   }
 
-  async findOne(id: number, orgId?: number) {
-    const whereClause = orgId ? { id, orgId } : { id };
+  async findOne(id: string, orgId?: string) {
+    const whereClause = orgId ? { id, organizationId: orgId } : { id };
     const task = await this.taskReposistory.findOne({
       where: whereClause,
       relations: ['creator', 'assignee', 'organization'],
@@ -37,25 +37,25 @@ export class TasksService {
     return task;
   }
 
-  async findByOrganization(orgId: number) {
+  async findByOrganization(orgId: string) {
     return this.taskReposistory.find({
-      where: { orgId },
+      where: { organizationId: orgId },
       relations: ['creator', 'assignee', 'organization'],
     });
   }
 
-  async findByUser(userId: number, orgId: number) {
+  async findByUser(userId: string, orgId: string) {
     return this.taskReposistory.find({
       where: [
-        { createdBy: userId, orgId },
-        { assignedTo: userId, orgId },
+        { createdBy: userId, organizationId: orgId },
+        { assignedTo: userId, organizationId: orgId },
       ],
       relations: ['creator', 'assignee', 'organization'],
     });
   }
 
-  async update(id: number, updateTaskDto: UpdateTaskDto, orgId?: number) {
-    const whereClause = orgId ? { id, orgId } : { id };
+  async update(id: string, updateTaskDto: UpdateTaskDto, orgId?: string) {
+    const whereClause = orgId ? { id, organizationId: orgId } : { id };
     await this.taskReposistory.update(whereClause, updateTaskDto);
     const updatedTask = await this.taskReposistory.findOne({ 
       where: { id },
@@ -64,14 +64,14 @@ export class TasksService {
     return updatedTask;
   }
 
-  async remove(id: number, orgId?: number) {
-    const whereClause = orgId ? { id, orgId } : { id };
+  async remove(id: string, orgId?: string) {
+    const whereClause = orgId ? { id, organizationId: orgId } : { id };
     const deleteTask = await this.taskReposistory.delete(whereClause);
     return deleteTask;
   }
 
-  async updateStatus(id: number, status: TaskStatus, orgId: number) {
-    await this.taskReposistory.update({ id, orgId }, { status });
+  async updateStatus(id: string, status: TaskStatus, orgId: string) {
+    await this.taskReposistory.update({ id, organizationId: orgId }, { status });
     return this.findOne(id, orgId);
   }
 }

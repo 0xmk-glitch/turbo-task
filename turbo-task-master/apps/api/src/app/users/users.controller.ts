@@ -13,7 +13,7 @@ import {
 import { UsersService } from './users.service';
 import { CreateUserDto } from '../../../../../libs/data/dto/user/create-user.dto';
 import { UpdateUserDto } from '../../../../../libs/data/dto/user/update-user.dto';
-import { Role } from '../../../../../libs/auth/enum/role.enum';
+import { UserRole } from './entities/user.entity';
 import { Roles } from '../../../../../libs/auth/decorators/roles.decorator';
 import { RolesGuard } from '../../../../../libs/auth/guards/roles/roles.guard';
 import { JwtAuthGuard } from '../../../../../libs/auth/guards/jwt-auth/jwt-auth.guard';
@@ -31,7 +31,7 @@ export class UsersController {
   @UseGuards(JwtAuthGuard)
   @Get('profile')
   getProfile(@Req() req) {
-    return this.usersService.findOne(1);
+    return this.usersService.findOne(req.user.id);
   }
 
   @Get()
@@ -41,18 +41,18 @@ export class UsersController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id);
+    return this.usersService.findOne(id);
   }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(+id, updateUserDto);
+    return this.usersService.update(id, updateUserDto);
   }
 
-  @Roles(Role.ADMIN)
+  @Roles(UserRole.ADMIN)
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.usersService.remove(+id);
+    return this.usersService.remove(id);
   }
 }

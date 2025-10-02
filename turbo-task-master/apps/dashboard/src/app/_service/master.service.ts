@@ -14,7 +14,7 @@ export class MasterService {
     // In production, this would call the actual API
     const sampleTasks: CreateTaskDto[] = [
       {
-        id: 1,
+        id: '1',
         title: 'Implement user authentication',
         description: 'Add JWT-based authentication system with role-based access control',
         type: 'work',
@@ -25,7 +25,7 @@ export class MasterService {
         updatedAt: new Date('2024-12-01')
       },
       {
-        id: 2,
+        id: '2',
         title: 'Design task management UI',
         description: 'Create responsive dashboard with drag-and-drop functionality',
         type: 'work',
@@ -36,7 +36,7 @@ export class MasterService {
         updatedAt: new Date('2024-12-15')
       },
       {
-        id: 3,
+        id: '3',
         title: 'Write unit tests',
         description: 'Add comprehensive test coverage for all components',
         type: 'work',
@@ -47,7 +47,7 @@ export class MasterService {
         updatedAt: new Date('2024-12-18')
       },
       {
-        id: 4,
+        id: '4',
         title: 'Grocery shopping',
         description: 'Buy ingredients for weekend cooking',
         type: 'personal',
@@ -58,7 +58,7 @@ export class MasterService {
         updatedAt: new Date('2024-12-20')
       },
       {
-        id: 5,
+        id: '5',
         title: 'Plan vacation',
         description: 'Research destinations and book flights',
         type: 'personal',
@@ -69,7 +69,7 @@ export class MasterService {
         updatedAt: new Date('2024-12-18')
       },
       {
-        id: 6,
+        id: '6',
         title: 'Clean garage',
         description: 'Organize tools and declutter storage space',
         type: 'home',
@@ -80,7 +80,7 @@ export class MasterService {
         updatedAt: new Date('2024-12-19')
       },
       {
-        id: 7,
+        id: '7',
         title: 'Fix leaky faucet',
         description: 'Replace washer in kitchen faucet',
         type: 'home',
@@ -91,7 +91,7 @@ export class MasterService {
         updatedAt: new Date('2024-12-16')
       },
       {
-        id: 8,
+        id: '8',
         title: 'Code review for PR #123',
         description: 'Review and approve pull request for new feature',
         type: 'work',

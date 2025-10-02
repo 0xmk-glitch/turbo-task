@@ -11,20 +11,32 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { Organization } from './organizations/entities/organization.entity';
 import { OrganizationsModule } from './organizations/organizations.module';
+import { AuditLog } from './audit/entities/audit-log.entity';
+import { AuditModule } from './audit/audit.module';
+import { LoggingModule } from './logging/logging.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: '../demo.db',
-      entities: [Task, User, Organization],
-      synchronize: true,
+      type: "postgres",
+      host: "localhost",
+      port: 5432,
+      username: "postgres",
+      password: "postgres",
+      database: "turbodb",
+      entities: [Task, User, Organization, AuditLog],
+      synchronize: false,
+      dropSchema: false, // This will recreate the database schema
+      logger: 'advanced-console',
+      logging: ['query', 'error', 'warn']
     }),
     TasksModule,
     UsersModule,
     AuthModule,
     OrganizationsModule,
+    AuditModule,
+    LoggingModule,
   ],
   controllers: [AppController],
   providers: [AppService],
