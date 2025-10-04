@@ -1,0 +1,22 @@
+@use '@angular/material' as mat;
+
+// Textarea styling
+.mat-mdc-form-field textarea {
+  min-height: 100px;
+  resize: vertical;
+  font-family: inherit;
+  line-height: 1.6;
+  font-size: 16px;
+  padding: 16px 14px 8px 14px;
+  color: theme('colors.neutral.900');
+  border: none !important;
+  outline: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  background-image: none !important;
+  
+  &::placeholder {
+    color: theme('colors.neutral.400');
+    font-size: 16px;
+  }
+}

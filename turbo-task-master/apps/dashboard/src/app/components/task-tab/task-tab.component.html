@@ -1,63 +1,61 @@
-  <div class="w-full max-w-[140rem] mx-auto space-y-6">
+  <div class="w-full max-w-[140rem] mx-auto space-y-8">
     <!-- Task Statistics Cards -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
       <!-- Total Tasks Card -->
-      <mat-card class="bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800 hover:shadow-md transition-shadow duration-200">
-        <mat-card-content class="p-4 overflow-visible">
+      <mat-card class="bg-accent-50 dark:bg-accent-900/20 border-accent-200 dark:border-accent-800 hover:shadow-soft-md transition-all duration-200 rounded-2xl">
+        <mat-card-content class="p-6 overflow-visible">
           <div class="flex items-center justify-between overflow-visible">
             <div class="flex-1">
-              <p class="text-sm font-medium text-blue-600 dark:text-blue-400 mb-1">Total Tasks</p>
-              <p class="text-2xl font-bold text-blue-900 dark:text-blue-100">{{ getTotalTasks() }}</p>
+              <p class="text-sm font-semibold text-accent-600 dark:text-accent-400 mb-2">Total Tasks</p>
+              <p class="text-3xl font-bold text-accent-900 dark:text-accent-100">{{ getTotalTasks() }}</p>
             </div>
-            <div class="p-3 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 overflow-visible">
-              <mat-icon fontIcon="assignment" class="text-blue-500 text-xl sm:text-2xl"></mat-icon>
+            <div class="p-4 bg-accent-100 dark:bg-accent-900/30 rounded-2xl flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 overflow-visible shadow-soft">
+              <mat-icon fontIcon="assignment" class="text-accent-500 text-2xl sm:text-3xl"></mat-icon>
             </div>
           </div>
         </mat-card-content>
       </mat-card>
 
       <!-- In Progress Card -->
-      <mat-card class="bg-yellow-50 dark:bg-yellow-900/20 border-yellow-200 dark:border-yellow-800 hover:shadow-md transition-shadow duration-200">
-        <mat-card-content class="p-4 overflow-visible">
+      <mat-card class="bg-orange-50 dark:bg-orange-900/20 border-orange-200 dark:border-orange-800 hover:shadow-soft-md transition-all duration-200 rounded-2xl">
+        <mat-card-content class="p-6 overflow-visible">
           <div class="flex items-center justify-between overflow-visible">
             <div class="flex-1">
-              <p class="text-sm font-medium text-yellow-600 dark:text-yellow-400 mb-1">In Progress</p>
-              <p class="text-2xl font-bold text-yellow-900 dark:text-yellow-100">{{ getInProgressTasks() }}</p>
+              <p class="text-sm font-semibold text-orange-600 dark:text-orange-400 mb-2">In Progress</p>
+              <p class="text-3xl font-bold text-orange-900 dark:text-orange-100">{{ getInProgressTasks() }}</p>
             </div>
-            <div class="p-3 bg-yellow-100 dark:bg-yellow-900/30 rounded-lg flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 overflow-visible">
-              <mat-icon fontIcon="work" class="text-yellow-500 text-xl sm:text-2xl"></mat-icon>
+            <div class="p-4 bg-orange-100 dark:bg-orange-900/30 rounded-2xl flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 overflow-visible shadow-soft">
+              <mat-icon fontIcon="work" class="text-orange-500 text-2xl sm:text-3xl"></mat-icon>
             </div>
           </div>
         </mat-card-content>
       </mat-card>
 
-      
-
       <!-- Completed Card -->
-      <mat-card class="bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800 hover:shadow-md transition-shadow duration-200">
-        <mat-card-content class="p-4 overflow-visible">
+      <mat-card class="bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800 hover:shadow-soft-md transition-all duration-200 rounded-2xl">
+        <mat-card-content class="p-6 overflow-visible">
           <div class="flex items-center justify-between overflow-visible">
             <div class="flex-1">
-              <p class="text-sm font-medium text-green-600 dark:text-green-400 mb-1">Completed</p>
-              <p class="text-2xl font-bold text-green-900 dark:text-green-100">{{ getCompletedTasks() }}</p>
+              <p class="text-sm font-semibold text-green-600 dark:text-green-400 mb-2">Completed</p>
+              <p class="text-3xl font-bold text-green-900 dark:text-green-100">{{ getCompletedTasks() }}</p>
             </div>
-            <div class="p-3 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 overflow-visible">
-              <mat-icon fontIcon="check_circle" class="text-green-500 text-xl sm:text-2xl"></mat-icon>
+            <div class="p-4 bg-green-100 dark:bg-green-900/30 rounded-2xl flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 overflow-visible shadow-soft">
+              <mat-icon fontIcon="check_circle" class="text-green-500 text-2xl sm:text-3xl"></mat-icon>
             </div>
           </div>
         </mat-card-content>
       </mat-card>
 
       <!-- Overdue Card -->
-      <mat-card class="bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800 hover:shadow-md transition-shadow duration-200">
-        <mat-card-content class="p-4 overflow-visible">
+      <mat-card class="bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800 hover:shadow-soft-md transition-all duration-200 rounded-2xl">
+        <mat-card-content class="p-6 overflow-visible">
           <div class="flex items-center justify-between overflow-visible">
             <div class="flex-1">
-              <p class="text-sm font-medium text-red-600 dark:text-red-400 mb-1">Overdue</p>
-              <p class="text-2xl font-bold text-red-900 dark:text-red-100">{{ getOverdueTasks() }}</p>
+              <p class="text-sm font-semibold text-red-600 dark:text-red-400 mb-2">Overdue</p>
+              <p class="text-3xl font-bold text-red-900 dark:text-red-100">{{ getOverdueTasks() }}</p>
             </div>
-            <div class="p-3 bg-red-100 dark:bg-red-900/30 rounded-lg flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 overflow-visible">
-              <mat-icon fontIcon="warning" class="text-red-500 text-xl sm:text-2xl"></mat-icon>
+            <div class="p-4 bg-red-100 dark:bg-red-900/30 rounded-2xl flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 overflow-visible shadow-soft">
+              <mat-icon fontIcon="warning" class="text-red-500 text-2xl sm:text-3xl"></mat-icon>
             </div>
           </div>
         </mat-card-content>
@@ -66,70 +64,72 @@
 
 
     <!-- Task Actions Bar -->
-    <mat-card class="shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow duration-200">
-      <mat-card-content class="p-4">
-        <div class="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-4">
+    <mat-card class="shadow-soft border border-neutral-200 dark:border-neutral-700 hover:shadow-soft-md transition-all duration-200 rounded-2xl">
+      <mat-card-content class="p-6">
+        <div class="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-6">
           <!-- Action Buttons -->
-          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full xl:w-auto">
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full xl:w-auto">
             <button 
               mat-raised-button 
               color="primary" 
               (click)="openCreateTaskDialog()" 
-              class="w-full sm:w-auto min-w-[140px] h-10">
-              <mat-icon fontIcon="add" class="mr-2"></mat-icon>
-              Create Task
+              [disabled]="isCreateTaskDialogOpen"
+              class="w-full sm:w-auto min-w-[160px] h-12 rounded-xl font-semibold"
+              [matTooltip]="isCreateTaskDialogOpen ? 'Task form is already open' : 'Create new task - Shortcuts: Ctrl+N, F2, Ctrl+Plus'">
+              <mat-icon [fontIcon]="isCreateTaskDialogOpen ? 'edit' : 'add'" class="mr-2"></mat-icon>
+              {{ isCreateTaskDialogOpen ? 'Form Open' : 'Create Task' }}
             </button>
             <button 
               mat-stroked-button 
               (click)="refreshTasks()" 
-              class="w-full sm:w-auto min-w-[120px] h-10">
+              class="w-full sm:w-auto min-w-[140px] h-12 rounded-xl font-semibold">
               <mat-icon fontIcon="refresh" class="mr-2"></mat-icon>
               Refresh
             </button>
           </div>
           
           <!-- Filters and Search -->
-          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full xl:w-auto">
-            <mat-form-field appearance="outline" class="w-full sm:w-48">
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full xl:w-auto">
+            <mat-form-field appearance="fill"class="w-full sm:w-52">
               <mat-label>Filter by Priority</mat-label>
               <mat-select [(value)]="selectedPriority" (selectionChange)="filterTasks()">
                 <mat-option value="">
                   <div class="flex items-center space-x-2">
-                    <mat-icon fontIcon="filter_list" class="text-sm text-gray-600"></mat-icon>
-                    <span>All Priorities</span>
+                    <mat-icon fontIcon="filter_list" class="text-sm text-neutral-600"></mat-icon>
+                    <span class="font-medium">All Priorities</span>
                   </div>
                 </mat-option>
                 <mat-option value="1">
                   <div class="flex items-center space-x-2">
                     <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <span>Low</span>
+                    <span class="font-medium">Low</span>
                   </div>
                 </mat-option>
                 <mat-option value="2">
                   <div class="flex items-center space-x-2">
                     <div class="w-2 h-2 bg-yellow-500 rounded-full"></div>
-                    <span>Medium</span>
+                    <span class="font-medium">Medium</span>
                   </div>
                 </mat-option>
                 <mat-option value="3">
                   <div class="flex items-center space-x-2">
                     <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
-                    <span>High</span>
+                    <span class="font-medium">High</span>
                   </div>
                 </mat-option>
                 <mat-option value="4">
                   <div class="flex items-center space-x-2">
                     <div class="w-2 h-2 bg-red-500 rounded-full"></div>
-                    <span>Urgent</span>
+                    <span class="font-medium">Urgent</span>
                   </div>
                 </mat-option>
               </mat-select>
             </mat-form-field>
             
-            <mat-form-field appearance="outline" class="w-full sm:w-48">
+            <mat-form-field appearance="fill"class="w-full sm:w-52">
               <mat-label>Search Tasks</mat-label>
               <input matInput [(ngModel)]="searchTerm" (input)="filterTasks()" placeholder="Search tasks...">
-              <mat-icon matSuffix fontIcon="search"></mat-icon>
+              <mat-icon matSuffix fontIcon="search" class="text-neutral-500"></mat-icon>
             </mat-form-field>
           </div>
         </div>
@@ -138,21 +138,45 @@
 
 
     <!-- Main Task Board -->
-    <mat-card class="shadow-sm border border-gray-200 dark:border-gray-700 w-full min-h-96 hover:shadow-md transition-shadow duration-200">
-      <mat-card-header class="pb-4">
-        <mat-card-title class="text-xl font-semibold flex items-center text-gray-900 dark:text-white">
-          <div class="flex items-center space-x-3">
-            <div class="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
-              <mat-icon fontIcon="dashboard" class="text-blue-600 dark:text-blue-400 text-xl"></mat-icon>
+    <mat-card class="shadow-soft border border-neutral-200 dark:border-neutral-700 w-full min-h-96 hover:shadow-soft-md transition-all duration-200 rounded-2xl">
+      <mat-card-header class="pb-6">
+        <div class="flex items-center justify-between w-full">
+          <mat-card-title class="text-2xl font-semibold flex items-center text-neutral-900 dark:text-white">
+            <div class="flex items-center space-x-4">
+              <div class="p-3 bg-accent-100 dark:bg-accent-900/30 rounded-2xl shadow-soft">
+                <mat-icon fontIcon="dashboard" class="text-accent-600 dark:text-accent-400 text-2xl"></mat-icon>
+              </div>
+              <div>
+                <span>Tasks Board</span>
+                <p class="text-sm font-medium text-neutral-600 dark:text-neutral-400 mt-1">
+                  Organize your tasks by category and status
+                </p>
+              </div>
             </div>
-            <div>
-              <span>Tasks Board</span>
-              <p class="text-sm font-normal text-gray-600 dark:text-gray-400 mt-1">
-                Organize your tasks by category and status
-              </p>
+          </mat-card-title>
+          
+          <!-- Keyboard Shortcuts Help -->
+          <div class="hidden lg:flex items-center space-x-3 text-xs text-neutral-500 dark:text-neutral-400">
+            <div class="flex items-center space-x-2">
+              <mat-icon fontIcon="keyboard" class="text-sm"></mat-icon>
+              <span class="font-medium">Shortcuts:</span>
+              <kbd class="px-2 py-1 bg-neutral-100 dark:bg-neutral-700 rounded text-xs font-mono">Ctrl+N</kbd>
+              <kbd class="px-2 py-1 bg-neutral-100 dark:bg-neutral-700 rounded text-xs font-mono">F2</kbd>
+              <span class="text-neutral-400">to create task</span>
             </div>
+            <div class="flex items-center space-x-2" *ngIf="isCreateTaskDialogOpen">
+              <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span class="text-green-600 dark:text-green-400 font-medium">Form Open</span>
+            </div>
+            <button 
+              mat-icon-button 
+              (click)="openKeyboardShortcutsHelp()"
+              class="text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors duration-200"
+              matTooltip="View all keyboard shortcuts">
+              <mat-icon fontIcon="help_outline" class="text-sm"></mat-icon>
+            </button>
           </div>
-        </mat-card-title>
+        </div>
   </mat-card-header>
     <mat-card-content class="pt-0">
       <mat-tab-group 
@@ -161,10 +185,10 @@
         class="task-tabs">
         <mat-tab>
           <ng-template mat-tab-label>
-            <div class="flex items-center space-x-2 px-2 py-1">
-              <mat-icon fontIcon="work" class="text-sm text-blue-600"></mat-icon>
-              <span class="hidden sm:inline">Work</span>
-              <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs px-2 py-1 rounded-full ml-1">
+            <div class="flex items-center space-x-3 px-3 py-2">
+              <mat-icon fontIcon="work" class="text-sm text-accent-600"></mat-icon>
+              <span class="hidden sm:inline font-semibold">Work</span>
+              <span class="bg-accent-100 dark:bg-accent-900 text-accent-800 dark:text-accent-200 text-xs px-3 py-1.5 rounded-full font-semibold">
                 {{ getTotalTasksByType('work') }}
               </span>
             </div>
@@ -184,10 +208,10 @@
         
         <mat-tab>
           <ng-template mat-tab-label>
-            <div class="flex items-center space-x-2 px-2 py-1">
+            <div class="flex items-center space-x-3 px-3 py-2">
               <mat-icon fontIcon="person" class="text-sm text-green-600"></mat-icon>
-              <span class="hidden sm:inline">Personal</span>
-              <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs px-2 py-1 rounded-full ml-1">
+              <span class="hidden sm:inline font-semibold">Personal</span>
+              <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs px-3 py-1.5 rounded-full font-semibold">
                 {{ getTotalTasksByType('personal') }}
               </span>
             </div>
@@ -207,10 +231,10 @@
         
         <mat-tab>
           <ng-template mat-tab-label>
-            <div class="flex items-center space-x-2 px-2 py-1">
+            <div class="flex items-center space-x-3 px-3 py-2">
               <mat-icon fontIcon="home" class="text-sm text-purple-600"></mat-icon>
-              <span class="hidden sm:inline">Home</span>
-              <span class="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-xs px-2 py-1 rounded-full ml-1">
+              <span class="hidden sm:inline font-semibold">Home</span>
+              <span class="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-xs px-3 py-1.5 rounded-full font-semibold">
                 {{ getTotalTasksByType('home') }}
               </span>
             </div>

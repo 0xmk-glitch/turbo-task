@@ -1,0 +1,23 @@
+@use '@angular/material' as mat;
+
+// Main panel container
+.create-task-panel {
+  // Panel animations
+  &.panel-enter {
+    transform: translateX(100%);
+  }
+  
+  &.panel-enter-active {
+    transform: translateX(0);
+    transition: transform 300ms ease-in-out;
+  }
+  
+  &.panel-exit {
+    transform: translateX(0);
+  }
+  
+  &.panel-exit-active {
+    transform: translateX(100%);
+    transition: transform 300ms ease-in-out;
+  }
+}

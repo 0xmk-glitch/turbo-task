@@ -1,0 +1,103 @@
+<button
+  mat-raised-button
+  *ngIf="type === 'primary'"
+  [color]="getColor()"
+  [disabled]="disabled || loading"
+  [class]="getButtonClasses()"
+  (click)="onClick()"
+  [matTooltip]="tooltip"
+  [matTooltipPosition]="tooltipPosition">
+  
+  <mat-icon 
+    *ngIf="icon && !loading" 
+    [fontIcon]="icon" 
+    [class]="iconClass">
+  </mat-icon>
+  
+  <mat-icon 
+    *ngIf="loading" 
+    fontIcon="refresh" 
+    class="animate-spin">
+  </mat-icon>
+  
+  <span *ngIf="label" [class]="labelClass">{{ label }}</span>
+  <ng-content></ng-content>
+</button>
+
+<button
+  mat-stroked-button
+  *ngIf="type === 'outline'"
+  [color]="getColor()"
+  [disabled]="disabled || loading"
+  [class]="getButtonClasses()"
+  (click)="onClick()"
+  [matTooltip]="tooltip"
+  [matTooltipPosition]="tooltipPosition">
+  
+  <mat-icon 
+    *ngIf="icon && !loading" 
+    [fontIcon]="icon" 
+    [class]="iconClass">
+  </mat-icon>
+  
+  <mat-icon 
+    *ngIf="loading" 
+    fontIcon="refresh" 
+    class="animate-spin">
+  </mat-icon>
+  
+  <span *ngIf="label" [class]="labelClass">{{ label }}</span>
+  <ng-content></ng-content>
+</button>
+
+<button
+  mat-flat-button
+  *ngIf="type === 'secondary'"
+  [color]="getColor()"
+  [disabled]="disabled || loading"
+  [class]="getButtonClasses()"
+  (click)="onClick()"
+  [matTooltip]="tooltip"
+  [matTooltipPosition]="tooltipPosition">
+  
+  <mat-icon 
+    *ngIf="icon && !loading" 
+    [fontIcon]="icon" 
+    [class]="iconClass">
+  </mat-icon>
+  
+  <mat-icon 
+    *ngIf="loading" 
+    fontIcon="refresh" 
+    class="animate-spin">
+  </mat-icon>
+  
+  <span *ngIf="label" [class]="labelClass">{{ label }}</span>
+  <ng-content></ng-content>
+</button>
+
+<button
+  mat-button
+  *ngIf="type === 'ghost'"
+  [color]="getColor()"
+  [disabled]="disabled || loading"
+  [class]="getButtonClasses()"
+  (click)="onClick()"
+  [matTooltip]="tooltip"
+  [matTooltipPosition]="tooltipPosition">
+  
+  <mat-icon 
+    *ngIf="icon && !loading" 
+    [fontIcon]="icon" 
+    [class]="iconClass">
+  </mat-icon>
+  
+  <mat-icon 
+    *ngIf="loading" 
+    fontIcon="refresh" 
+    class="animate-spin">
+  </mat-icon>
+  
+  <span *ngIf="label" [class]="labelClass">{{ label }}</span>
+  <ng-content></ng-content>
+</button>

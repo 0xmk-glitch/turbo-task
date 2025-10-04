@@ -1,0 +1,44 @@
+@use '@angular/material' as mat;
+
+// Form field styling
+.mat-mdc-form-field {
+  background-color: transparent !important; /* Ensure no background */
+  width: 100%;
+  margin-bottom: 0;
+  
+  .mdc-text-field--outlined {
+    .mdc-notched-outline {
+      border-color: theme('colors.neutral.300');
+      border-radius: 12px;
+      transition: border-color 0.2s ease-in-out;
+    }
+    
+    &:hover .mdc-notched-outline {
+      border-color: theme('colors.neutral.400');
+    }
+    
+    &.mdc-text-field--focused .mdc-notched-outline {
+      border-color: theme('colors.accent.500');
+      border-width: 2px;
+    }
+  }
+  
+  .mdc-floating-label {
+    color: theme('colors.neutral.600');
+    font-weight: 500;
+    
+    &.mdc-floating-label--float-above {
+      color: theme('colors.accent.600');
+    }
+  }
+  
+  .mdc-text-field__input {
+    color: theme('colors.neutral.900');
+    font-size: 16px;
+    padding: 16px 14px 8px 14px;
+    
+    &::placeholder {
+      color: theme('colors.neutral.400');
+    }
+  }
+}

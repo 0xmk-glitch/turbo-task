@@ -1,0 +1,49 @@
+<mat-form-field 
+  [appearance]="appearance" 
+  [class]="getFormFieldClasses()"
+  [matTooltip]="tooltip"
+  [matTooltipPosition]="tooltipPosition">
+  
+  <mat-label *ngIf="label">{{ label }}</mat-label>
+  
+  <mat-select
+    [placeholder]="placeholder || ''"
+    [disabled]="disabled"
+    [multiple]="multiple"
+    [value]="value"
+    (selectionChange)="onSelectionChange($event)"
+    (openedChange)="onOpenedChange($event)"
+    [class]="selectClass">
+    
+    <mat-option 
+      *ngFor="let option of options" 
+      [value]="option.value"
+      [disabled]="option.disabled">
+      
+      <div class="flex items-center space-x-3">
+        <mat-icon 
+          *ngIf="option.icon" 
+          [fontIcon]="option.icon" 
+          [class]="option.iconClass || 'text-sm'">
+        </mat-icon>
+        
+        <div class="flex flex-col">
+          <span class="font-medium">{{ option.label }}</span>
+          <span 
+            *ngIf="option.description" 
+            class="text-xs text-neutral-500 dark:text-neutral-400">
+            {{ option.description }}
+          </span>
+        </div>
+      </div>
+    </mat-option>
+    
+    <mat-option *ngIf="options.length === 0" disabled>
+      <span class="text-neutral-500 dark:text-neutral-400">No options available</span>
+    </mat-option>
+  </mat-select>
+  
+  <mat-hint *ngIf="hint" [align]="hintAlign">{{ hint }}</mat-hint>
+  
+  <mat-error *ngIf="errorMessage">{{ errorMessage }}</mat-error>
+</mat-form-field>

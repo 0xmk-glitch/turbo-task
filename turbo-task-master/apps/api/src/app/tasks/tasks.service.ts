@@ -17,6 +17,7 @@ export class TasksService {
       createdBy: userId,
       organizationId: orgId,
       assignedTo: createTaskDto.assignedTo ? createTaskDto.assignedTo : userId
+    });
     return await this.taskReposistory.save(task);
   }
 

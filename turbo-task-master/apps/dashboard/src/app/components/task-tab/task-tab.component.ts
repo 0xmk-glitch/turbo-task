@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,12 +10,16 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { CdkDrag, CdkDropList, CdkDropListGroup } from '@angular/cdk/drag-drop';
 import { MasterService } from '../../_service/master.service';
 import { CreateTaskDto } from 'libs/data/dto/task/create-task.dto';
 import { RouterModule } from '@angular/router';
 import { TaskBoardComponent } from '../task-board/task-board.component';
 import { CreateTaskComponent } from '../tasks/create-task.component';
+import { CreateTaskPanelComponent } from '../tasks/create-task-panel.component';
+import { KeyboardShortcutService } from '../../services/keyboard-shortcut.service';
+import { KeyboardShortcutsHelpComponent } from '../keyboard-shortcuts-help/keyboard-shortcuts-help.component';
 
 @Component({
   selector: 'app-task-tab',
@@ -31,28 +35,122 @@ import { CreateTaskComponent } from '../tasks/create-task.component';
     MatSelectModule,
     MatSnackBarModule,
     MatDialogModule,
+    MatTooltipModule,
     RouterModule,
-    TaskBoardComponent,
+    TaskBoardComponent
   ],
   templateUrl: './task-tab.component.html',
   styleUrl: './task-tab.component.scss',
 })
-export class TaskTabComponent implements OnInit {
+export class TaskTabComponent implements OnInit, OnDestroy {
   constructor(
     private service: MasterService,
     private snackBar: MatSnackBar,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private keyboardShortcutService: KeyboardShortcutService
   ) {}
 
   ngOnInit(): void {
     this.loadTasks();
+    this.registerKeyboardShortcuts();
   }
+
+  ngOnDestroy(): void {
+    // Unregister shortcuts when component is destroyed
+    this.keyboardShortcutService.unregisterShortcut('n', true);
+    this.keyboardShortcutService.unregisterShortcut('n', true, true);
+    this.keyboardShortcutService.unregisterShortcut('f2');
+    this.keyboardShortcutService.unregisterShortcut('+', true);
+    this.keyboardShortcutService.unregisterShortcut('=', true);
+    this.keyboardShortcutService.unregisterShortcut('f1');
+  }
+
+  private registerKeyboardShortcuts(): void {
+    // Ctrl + N
+    this.keyboardShortcutService.registerShortcut({
+      key: 'n',
+      ctrlKey: true,
+      action: () => {
+        if (!this.keyboardShortcutService.isInputField(document.activeElement) && !this.isCreateTaskDialogOpen) {
+          this.openCreateTaskDialog();
+        }
+      },
+      description: 'Create new task',
+      preventDefault: true
+    });
+
+    // Ctrl + Shift + N
+    this.keyboardShortcutService.registerShortcut({
+      key: 'n',
+      ctrlKey: true,
+      shiftKey: true,
+      action: () => {
+        if (!this.isCreateTaskDialogOpen) {
+          this.openCreateTaskDialog();
+        }
+      },
+      description: 'Create new task (force)',
+      preventDefault: true
+    });
+
+    // F2
+    this.keyboardShortcutService.registerShortcut({
+      key: 'f2',
+      action: () => {
+        if (!this.keyboardShortcutService.isInputField(document.activeElement) && !this.isCreateTaskDialogOpen) {
+          this.openCreateTaskDialog();
+        }
+      },
+      description: 'Create new task',
+      preventDefault: true
+    });
+
+    // Ctrl + Plus
+    this.keyboardShortcutService.registerShortcut({
+      key: '+',
+      ctrlKey: true,
+      action: () => {
+        if (!this.keyboardShortcutService.isInputField(document.activeElement) && !this.isCreateTaskDialogOpen) {
+          this.openCreateTaskDialog();
+        }
+      },
+      description: 'Create new task',
+      preventDefault: true
+    });
+
+    // Ctrl + Equal (same as plus on some keyboards)
+    this.keyboardShortcutService.registerShortcut({
+      key: '=',
+      ctrlKey: true,
+      action: () => {
+        if (!this.keyboardShortcutService.isInputField(document.activeElement) && !this.isCreateTaskDialogOpen) {
+          this.openCreateTaskDialog();
+        }
+      },
+      description: 'Create new task',
+      preventDefault: true
+    });
+
+    // F1 - Help
+    this.keyboardShortcutService.registerShortcut({
+      key: 'f1',
+      action: () => {
+        if (!this.keyboardShortcutService.isInputField(document.activeElement)) {
+          this.openKeyboardShortcutsHelp();
+        }
+      },
+      description: 'Open keyboard shortcuts help',
+      preventDefault: true
+    });
+  }
+
 
   tasklist!: any[];
   titles: string[] = [];
   selectedTabIndex = 0;
   selectedPriority = '';
   searchTerm = '';
+  isCreateTaskDialogOpen = false;
   
   groupedTasks: { [type: string]: { [status: number]: any[] } } = {
     work: {
@@ -171,21 +269,40 @@ export class TaskTabComponent implements OnInit {
   }
 
   openCreateTaskDialog() {
-    const dialogRef = this.dialog.open(CreateTaskComponent, {
-      width: '600px',
-      maxWidth: '90vw',
-      maxHeight: '90vh',
+    // Prevent opening multiple dialogs
+    if (this.isCreateTaskDialogOpen) {
+      return;
+    }
+
+    this.isCreateTaskDialogOpen = true;
+    
+    const dialogRef = this.dialog.open(CreateTaskPanelComponent, {
+      width: '100vw',
+      maxWidth: '100vw',
+      height: '100vh',
+      maxHeight: '100vh',
       data: { 
         taskData: null, 
         isEdit: false 
       },
       disableClose: false,
-      autoFocus: true
+      autoFocus: true,
+      panelClass: 'right-side-panel-dialog',
+      position: {
+        top: '0',
+        right: '0'
+      }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.addNewTask(result);
+    dialogRef.afterClosed().subscribe({
+      next: (result) => {
+        this.isCreateTaskDialogOpen = false; // Reset flag when dialog closes
+        if (result) {
+          this.addNewTask(result);
+        }
+      },
+      error: () => {
+        this.isCreateTaskDialogOpen = false; // Reset flag on error
       }
     });
   }
@@ -246,23 +363,58 @@ export class TaskTabComponent implements OnInit {
   }
 
   onTaskEdit(task: any) {
-    const dialogRef = this.dialog.open(CreateTaskComponent, {
-      width: '600px',
-      maxWidth: '90vw',
-      maxHeight: '90vh',
+    // Prevent opening multiple dialogs
+    if (this.isCreateTaskDialogOpen) {
+      return;
+    }
+
+    this.isCreateTaskDialogOpen = true;
+    
+    const dialogRef = this.dialog.open(CreateTaskPanelComponent, {
+      width: '100vw',
+      maxWidth: '100vw',
+      height: '100vh',
+      maxHeight: '100vh',
       data: { 
         taskData: task, 
         isEdit: true 
       },
       disableClose: false,
-      autoFocus: true
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.updateTask(result);
+      autoFocus: true,
+      panelClass: 'right-side-panel-dialog',
+      position: {
+        top: '0',
+        right: '0'
       }
     });
+
+    dialogRef.afterClosed().subscribe({
+      next: (result) => {
+        this.isCreateTaskDialogOpen = false; // Reset flag when dialog closes
+        if (result) {
+          this.updateTask(result);
+        }
+      },
+      error: () => {
+        this.isCreateTaskDialogOpen = false; // Reset flag on error
+      }
+    });
+  }
+
+  openKeyboardShortcutsHelp(): void {
+    this.dialog.open(KeyboardShortcutsHelpComponent, {
+      width: '600px',
+      maxWidth: '90vw',
+      maxHeight: '90vh',
+      disableClose: false,
+      autoFocus: false,
+      panelClass: 'keyboard-shortcuts-dialog'
+    });
+  }
+
+  // Method to reset dialog state (useful for debugging or manual reset)
+  resetDialogState(): void {
+    this.isCreateTaskDialogOpen = false;
   }
 
   onTaskDelete(task: any) {

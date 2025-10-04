@@ -1,0 +1,284 @@
+@use '@angular/material' as mat;
+
+// Custom styles for mat-form-field
+
+
+// Right Side Panel Styles
+
+.create-task-panel {
+  // Panel animations
+  &.panel-enter {
+    transform: translateX(100%);
+  }
+  
+  &.panel-enter-active {
+    transform: translateX(0);
+    transition: transform 300ms ease-in-out;
+  }
+  
+  &.panel-exit {
+    transform: translateX(0);
+  }
+  
+  &.panel-exit-active {
+    transform: translateX(100%);
+    transition: transform 300ms ease-in-out;
+  }
+
+
+  // Form field styling
+  .mat-mdc-form-field {
+    background-color: transparent !important; /* Ensure no background */
+    width: 100%;
+    margin-bottom: 0;
+    
+    .mdc-text-field--outlined {
+      .mdc-notched-outline {
+        border-color: theme('colors.neutral.300');
+        border-radius: 12px;
+        transition: border-color 0.2s ease-in-out;
+      }
+      
+      &:hover .mdc-notched-outline {
+        border-color: theme('colors.neutral.400');
+      }
+      
+      &.mdc-text-field--focused .mdc-notched-outline {
+        border-color: theme('colors.accent.500');
+        border-width: 2px;
+      }
+    }
+    
+    .mdc-floating-label {
+      color: theme('colors.neutral.600');
+      font-weight: 500;
+      
+      &.mdc-floating-label--float-above {
+        color: theme('colors.accent.600');
+      }
+    }
+    
+    .mdc-text-field__input {
+      color: theme('colors.neutral.900');
+      font-size: 16px;
+      padding: 16px 14px 8px 14px;
+      
+      &::placeholder {
+        color: theme('colors.neutral.400');
+      }
+    }
+  }
+
+  // Select field styling
+  .mat-mdc-select {
+    .mdc-select__anchor {
+      border-radius: 12px;
+      min-height: 56px;
+      padding: 16px 14px 8px 14px;
+      border-color: theme('colors.neutral.300');
+      
+      .mdc-select__selected-text {
+        color: theme('colors.neutral.900');
+        font-size: 16px;
+        font-weight: 400;
+      }
+    }
+    
+    .mdc-select__dropdown-icon {
+      color: theme('colors.neutral.500');
+    }
+    
+    &:hover .mdc-select__anchor {
+      border-color: theme('colors.neutral.400');
+    }
+    
+    &.mdc-select--focused .mdc-select__anchor {
+      border-color: theme('colors.accent.500');
+      border-width: 2px;
+    }
+  }
+
+  // Textarea styling
+  .mat-mdc-form-field textarea {
+    min-height: 100px;
+    resize: vertical;
+    font-family: inherit;
+    line-height: 1.6;
+    font-size: 16px;
+    padding: 16px 14px 8px 14px;
+    color: theme('colors.neutral.900');
+    border: none !important;
+    outline: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    background-image: none !important;
+    
+    &::placeholder {
+      color: theme('colors.neutral.400');
+      font-size: 16px;
+    }
+  }
+
+  // Error messages
+  .mat-mdc-error {
+    color: #ef4444;
+    font-size: 0.75rem;
+    margin-top: 4px;
+    display: block;
+    font-weight: 500;
+  }
+
+  // Hint text
+  .mat-mdc-hint {
+    color: theme('colors.neutral.500');
+    font-size: 0.75rem;
+    margin-top: 4px;
+    font-weight: 400;
+  }
+
+  // Button styling
+  .mat-mdc-button {
+    border-radius: 12px;
+    font-weight: 600;
+    text-transform: none;
+    padding: 12px 24px;
+    min-width: 120px;
+    transition: all 0.2s ease-in-out;
+    
+    &.mat-mdc-raised-button {
+      box-shadow: theme('boxShadow.soft');
+      
+      &:hover {
+        box-shadow: theme('boxShadow.soft-md');
+        transform: translateY(-1px);
+      }
+      
+      &:active {
+        transform: translateY(0);
+        box-shadow: theme('boxShadow.soft');
+      }
+    }
+    
+    &.mat-mdc-stroked-button {
+      border-color: theme('colors.neutral.300');
+      color: theme('colors.neutral.700');
+      
+      &:hover {
+        background-color: theme('colors.neutral.50');
+        border-color: theme('colors.neutral.400');
+      }
+    }
+  }
+
+  // Loading animation
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  // Keyboard shortcut styling
+  kbd {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background-color: theme('colors.neutral.200');
+    color: theme('colors.neutral.700');
+    border: 1px solid theme('colors.neutral.300');
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  // Dark theme support
+  .dark & {
+    .mat-mdc-form-field {
+      .mdc-text-field--outlined {
+        .mdc-notched-outline {
+          border-color: theme('colors.neutral.600');
+        }
+        
+        &:hover .mdc-notched-outline {
+          border-color: theme('colors.neutral.500');
+        }
+        
+        &.mdc-text-field--focused .mdc-notched-outline {
+          border-color: theme('colors.accent.400');
+        }
+      }
+      
+      .mdc-floating-label {
+        color: theme('colors.neutral.400');
+        
+        &.mdc-floating-label--float-above {
+          color: theme('colors.accent.400');
+        }
+      }
+      
+      .mdc-text-field__input {
+        color: theme('colors.neutral.100');
+        
+        &::placeholder {
+          color: theme('colors.neutral.500');
+        }
+      }
+    }
+    
+    .mat-mdc-select {
+      .mdc-select__anchor {
+        border-color: theme('colors.neutral.600');
+        
+        .mdc-select__selected-text {
+          color: theme('colors.neutral.100');
+        }
+      }
+      
+      .mdc-select__dropdown-icon {
+        color: theme('colors.neutral.400');
+      }
+      
+      &:hover .mdc-select__anchor {
+        border-color: theme('colors.neutral.500');
+      }
+      
+      &.mdc-select--focused .mdc-select__anchor {
+        border-color: theme('colors.accent.400');
+      }
+    }
+    
+    .mat-mdc-form-field textarea {
+      color: theme('colors.neutral.100');
+      
+      &::placeholder {
+        color: theme('colors.neutral.500');
+      }
+    }
+    
+    .mat-mdc-hint {
+      color: theme('colors.neutral.400');
+    }
+    
+    .mat-mdc-stroked-button {
+      border-color: theme('colors.neutral.600');
+      color: theme('colors.neutral.300');
+      
+      &:hover {
+        background-color: theme('colors.neutral.800');
+        border-color: theme('colors.neutral.500');
+      }
+    }
+    
+    kbd {
+      background-color: theme('colors.neutral.700');
+      color: theme('colors.neutral.300');
+      border-color: theme('colors.neutral.600');
+    }
+  }
+}

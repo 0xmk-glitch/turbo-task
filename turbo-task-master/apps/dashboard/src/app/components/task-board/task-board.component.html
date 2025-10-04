@@ -1,14 +1,14 @@
-<div cdkDropListGroup class="flex flex-col lg:flex-row gap-4 lg:gap-6 w-full min-h-96">
+<div cdkDropListGroup class="flex flex-col lg:flex-row gap-6 lg:gap-8 w-full min-h-96">
   <!-- To Do Column -->
-  <div class="flex-1 bg-gray-50 dark:bg-gray-800 rounded-lg p-4 shadow-sm border border-gray-200 dark:border-gray-700">
-    <div class="flex items-center justify-between mb-4">
-      <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-300 flex items-center">
-        <div class="flex items-center space-x-2">
-          <div class="p-1 bg-blue-100 dark:bg-blue-900/30 rounded">
-            <mat-icon class="text-blue-500 text-sm">pending</mat-icon>
+  <div class="flex-1 bg-neutral-50 dark:bg-neutral-800 rounded-2xl p-6 shadow-soft border border-neutral-200 dark:border-neutral-700">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-lg font-semibold text-neutral-700 dark:text-neutral-300 flex items-center">
+        <div class="flex items-center space-x-3">
+          <div class="p-2 bg-accent-100 dark:bg-accent-900/30 rounded-xl shadow-soft">
+            <mat-icon class="text-accent-500 text-sm">pending</mat-icon>
           </div>
           <span>To Do</span>
-          <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs px-2 py-1 rounded-full font-medium">
+          <span class="bg-accent-100 dark:bg-accent-900 text-accent-800 dark:text-accent-200 text-xs px-3 py-1.5 rounded-full font-semibold">
             {{ (tasksByStatus?.[0] || []).length }}
           </span>
         </div>
@@ -21,41 +21,41 @@
       (cdkDropListDropped)="drop($event)"
     >
       @for (item of tasksByStatus?.[0] || []; track item.id) {
-      <div class="bg-white dark:bg-gray-700 rounded-lg p-4 shadow-sm border border-gray-200 dark:border-gray-600 hover:shadow-md transition-shadow cursor-move" 
+      <div class="bg-white dark:bg-neutral-700 rounded-xl p-5 shadow-soft border border-neutral-200 dark:border-neutral-600 hover:shadow-soft-md transition-all duration-300 cursor-move hover:scale-[1.02] animate-fade-in" 
            cdkDrag>
         <div class="flex items-start justify-between">
           <div class="flex-1">
-            <h3 class="font-medium text-gray-900 dark:text-gray-100 mb-1">{{ item.title }}</h3>
+            <h3 class="font-semibold text-neutral-900 dark:text-neutral-100 mb-2 text-base">{{ item.title }}</h3>
             @if (item.description) {
-              <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">{{ item.description }}</p>
+              <p class="text-sm text-neutral-600 dark:text-neutral-400 mb-3 leading-relaxed">{{ item.description }}</p>
             }
-            <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+            <div class="flex items-center justify-between text-xs">
               <div class="flex items-center space-x-2">
-                <span class="bg-gray-100 dark:bg-gray-600 px-2 py-1 rounded capitalize">{{ item.type }}</span>
+                <span class="bg-neutral-100 dark:bg-neutral-600 px-3 py-1.5 rounded-lg capitalize font-medium text-neutral-700 dark:text-neutral-300">{{ item.type }}</span>
                 @if (item.priority) {
-                  <span class="px-2 py-1 rounded font-medium" 
+                  <span class="px-3 py-1.5 rounded-lg font-semibold text-xs" 
                         [class]="getPriorityClass(item.priority)">
                     {{ getPriorityLabel(item.priority) }}
                   </span>
                 }
               </div>
               @if (item.dueDate) {
-                <span class="text-xs" 
-                      [class]="isOverdue(item.dueDate) ? 'text-red-500 font-medium' : 'text-gray-500'">
+                <span class="text-xs font-medium" 
+                      [class]="isOverdue(item.dueDate) ? 'text-red-500' : 'text-neutral-500 dark:text-neutral-400'">
                   {{ formatDate(item.dueDate) }}
                 </span>
               }
             </div>
           </div>
-          <div class="flex gap-1 ml-2">
+          <div class="flex gap-1 ml-3">
             <button mat-icon-button 
-                    class="text-gray-400 hover:text-blue-500 dark:hover:text-blue-400" 
+                    class="text-neutral-400 hover:text-accent-500 dark:hover:text-accent-400 hover:bg-accent-50 dark:hover:bg-accent-900/20 rounded-lg transition-all duration-200" 
                     (click)="editItem(item)"
                     matTooltip="Edit task">
               <mat-icon class="text-sm">edit</mat-icon>
             </button>
             <button mat-icon-button 
-                    class="text-gray-400 hover:text-red-500 dark:hover:text-red-400" 
+                    class="text-neutral-400 hover:text-red-500 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-all duration-200" 
                     (click)="deleteItem(item)"
                     matTooltip="Delete task">
               <mat-icon class="text-sm">delete</mat-icon>
@@ -68,15 +68,15 @@
   </div>
 
   <!-- In Progress Column -->
-  <div class="flex-1 bg-gray-50 dark:bg-gray-800 rounded-lg p-4 shadow-sm border border-gray-200 dark:border-gray-700">
-    <div class="flex items-center justify-between mb-4">
-      <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-300 flex items-center">
-        <div class="flex items-center space-x-2">
-          <div class="p-1 bg-yellow-100 dark:bg-yellow-900/30 rounded">
-            <mat-icon class="text-yellow-500 text-sm">work</mat-icon>
+  <div class="flex-1 bg-neutral-50 dark:bg-neutral-800 rounded-2xl p-6 shadow-soft border border-neutral-200 dark:border-neutral-700">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-lg font-semibold text-neutral-700 dark:text-neutral-300 flex items-center">
+        <div class="flex items-center space-x-3">
+          <div class="p-2 bg-orange-100 dark:bg-orange-900/30 rounded-xl shadow-soft">
+            <mat-icon class="text-orange-500 text-sm">work</mat-icon>
           </div>
           <span>In Progress</span>
-          <span class="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 text-xs px-2 py-1 rounded-full font-medium">
+          <span class="bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 text-xs px-3 py-1.5 rounded-full font-semibold">
             {{ (tasksByStatus?.[1] || []).length }}
           </span>
         </div>
@@ -89,33 +89,33 @@
       (cdkDropListDropped)="drop($event)"
     >
       @for (item of tasksByStatus?.[1] || []; track item.id) {
-      <div class="bg-white dark:bg-gray-700 rounded-lg p-4 shadow-sm border border-gray-200 dark:border-gray-600 hover:shadow-md transition-shadow cursor-move" 
+      <div class="bg-white dark:bg-neutral-700 rounded-xl p-5 shadow-soft border border-neutral-200 dark:border-neutral-600 hover:shadow-soft-md transition-all duration-300 cursor-move hover:scale-[1.02] animate-fade-in" 
            cdkDrag>
         <div class="flex items-start justify-between">
           <div class="flex-1">
-            <h3 class="font-medium text-gray-900 dark:text-gray-100 mb-1">{{ item.title }}</h3>
+            <h3 class="font-semibold text-neutral-900 dark:text-neutral-100 mb-2 text-base">{{ item.title }}</h3>
             @if (item.description) {
-              <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">{{ item.description }}</p>
+              <p class="text-sm text-neutral-600 dark:text-neutral-400 mb-3 leading-relaxed">{{ item.description }}</p>
             }
-            <div class="flex items-center space-x-2 text-xs text-gray-500 dark:text-gray-400">
-              <span class="bg-gray-100 dark:bg-gray-600 px-2 py-1 rounded">{{ item.type }}</span>
+            <div class="flex items-center space-x-2 text-xs">
+              <span class="bg-neutral-100 dark:bg-neutral-600 px-3 py-1.5 rounded-lg font-medium text-neutral-700 dark:text-neutral-300">{{ item.type }}</span>
               @if (item.priority) {
-                <span class="px-2 py-1 rounded" 
+                <span class="px-3 py-1.5 rounded-lg font-semibold text-xs" 
                       [class]="getPriorityClass(item.priority)">
                   {{ getPriorityLabel(item.priority) }}
                 </span>
               }
             </div>
           </div>
-          <div class="flex gap-1 ml-2">
+          <div class="flex gap-1 ml-3">
             <button mat-icon-button 
-                    class="text-gray-400 hover:text-blue-500 dark:hover:text-blue-400" 
+                    class="text-neutral-400 hover:text-accent-500 dark:hover:text-accent-400 hover:bg-accent-50 dark:hover:bg-accent-900/20 rounded-lg transition-all duration-200" 
                     (click)="editItem(item)"
                     matTooltip="Edit task">
               <mat-icon class="text-sm">edit</mat-icon>
             </button>
             <button mat-icon-button 
-                    class="text-gray-400 hover:text-red-500 dark:hover:text-red-400" 
+                    class="text-neutral-400 hover:text-red-500 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-all duration-200" 
                     (click)="deleteItem(item)"
                     matTooltip="Delete task">
               <mat-icon class="text-sm">delete</mat-icon>
@@ -128,15 +128,15 @@
   </div>
 
   <!-- Done Column -->
-  <div class="flex-1 bg-gray-50 dark:bg-gray-800 rounded-lg p-4 shadow-sm border border-gray-200 dark:border-gray-700">
-    <div class="flex items-center justify-between mb-4">
-      <h2 class="text-lg font-semibold text-gray-700 dark:text-gray-300 flex items-center">
-        <div class="flex items-center space-x-2">
-          <div class="p-1 bg-green-100 dark:bg-green-900/30 rounded">
+  <div class="flex-1 bg-neutral-50 dark:bg-neutral-800 rounded-2xl p-6 shadow-soft border border-neutral-200 dark:border-neutral-700">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-lg font-semibold text-neutral-700 dark:text-neutral-300 flex items-center">
+        <div class="flex items-center space-x-3">
+          <div class="p-2 bg-green-100 dark:bg-green-900/30 rounded-xl shadow-soft">
             <mat-icon class="text-green-500 text-sm">check_circle</mat-icon>
           </div>
           <span>Done</span>
-          <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs px-2 py-1 rounded-full font-medium">
+          <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs px-3 py-1.5 rounded-full font-semibold">
             {{ (tasksByStatus?.[2] || []).length }}
           </span>
         </div>
@@ -149,33 +149,33 @@
       (cdkDropListDropped)="drop($event)"
     >
       @for (item of tasksByStatus?.[2] || []; track item.id) {
-      <div class="bg-white dark:bg-gray-700 rounded-lg p-4 shadow-sm border border-gray-200 dark:border-gray-600 hover:shadow-md transition-shadow cursor-move opacity-75" 
+      <div class="bg-white dark:bg-neutral-700 rounded-xl p-5 shadow-soft border border-neutral-200 dark:border-neutral-600 hover:shadow-soft-md transition-all duration-300 cursor-move hover:scale-[1.02] opacity-75 animate-fade-in" 
            cdkDrag>
         <div class="flex items-start justify-between">
           <div class="flex-1">
-            <h3 class="font-medium text-gray-900 dark:text-gray-100 mb-1 line-through">{{ item.title }}</h3>
+            <h3 class="font-semibold text-neutral-900 dark:text-neutral-100 mb-2 text-base line-through">{{ item.title }}</h3>
             @if (item.description) {
-              <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">{{ item.description }}</p>
+              <p class="text-sm text-neutral-600 dark:text-neutral-400 mb-3 leading-relaxed">{{ item.description }}</p>
             }
-            <div class="flex items-center space-x-2 text-xs text-gray-500 dark:text-gray-400">
-              <span class="bg-gray-100 dark:bg-gray-600 px-2 py-1 rounded">{{ item.type }}</span>
+            <div class="flex items-center space-x-2 text-xs">
+              <span class="bg-neutral-100 dark:bg-neutral-600 px-3 py-1.5 rounded-lg font-medium text-neutral-700 dark:text-neutral-300">{{ item.type }}</span>
               @if (item.priority) {
-                <span class="px-2 py-1 rounded" 
+                <span class="px-3 py-1.5 rounded-lg font-semibold text-xs" 
                       [class]="getPriorityClass(item.priority)">
                   {{ getPriorityLabel(item.priority) }}
                 </span>
               }
             </div>
           </div>
-          <div class="flex gap-1 ml-2">
+          <div class="flex gap-1 ml-3">
             <button mat-icon-button 
-                    class="text-gray-400 hover:text-blue-500 dark:hover:text-blue-400" 
+                    class="text-neutral-400 hover:text-accent-500 dark:hover:text-accent-400 hover:bg-accent-50 dark:hover:bg-accent-900/20 rounded-lg transition-all duration-200" 
                     (click)="editItem(item)"
                     matTooltip="Edit task">
               <mat-icon class="text-sm">edit</mat-icon>
             </button>
             <button mat-icon-button 
-                    class="text-gray-400 hover:text-red-500 dark:hover:text-red-400" 
+                    class="text-neutral-400 hover:text-red-500 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-all duration-200" 
                     (click)="deleteItem(item)"
                     matTooltip="Delete task">
               <mat-icon class="text-sm">delete</mat-icon>

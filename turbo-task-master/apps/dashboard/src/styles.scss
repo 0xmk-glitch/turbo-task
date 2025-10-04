@@ -2,10 +2,127 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Import Inter font for modern typography */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 /* You can add global styles to this file, and also import other style files */
 
 html, body { 
   height: 100%; 
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Global minimal design system */
+* {
+  box-sizing: border-box;
+}
+
+/* Smooth transitions for theme switching */
+* {
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+/* Custom scrollbar for minimal design */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: theme('colors.neutral.300');
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: theme('colors.neutral.400');
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: theme('colors.neutral.600');
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: theme('colors.neutral.500');
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid theme('colors.accent.500');
+  outline-offset: 2px;
+}
+
+/* Selection styles */
+::selection {
+  background: theme('colors.accent.100');
+  color: theme('colors.accent.900');
+}
+
+.dark ::selection {
+  background: theme('colors.accent.800');
+  color: theme('colors.accent.100');
+}
+
+/* Right Side Panel Dialog Styles */
+.right-side-panel-dialog {
+  .mat-mdc-dialog-container {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: none !important;
+    max-height: none !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+  
+  .mdc-dialog__surface {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+  }
+  
+  .mdc-dialog__container {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+  }
+}
+
+/* Keyboard Shortcuts Dialog Styles */
+.keyboard-shortcuts-dialog {
+  .mat-mdc-dialog-container {
+    border-radius: 16px !important;
+    box-shadow: 0 8px 10px -2px rgba(0, 0, 0, 0.06), 0 4px 6px -2px rgba(0, 0, 0, 0.02) !important;
+    background: #ffffff !important;
+  }
+  
+  .mdc-dialog__surface {
+    border-radius: 16px !important;
+    box-shadow: 0 8px 10px -2px rgba(0, 0, 0, 0.06), 0 4px 6px -2px rgba(0, 0, 0, 0.02) !important;
+    background: #ffffff !important;
+  }
+  
+  .dark & {
+    .mat-mdc-dialog-container {
+      background: #1f2937 !important;
+    }
+    
+    .mdc-dialog__surface {
+      background: #1f2937 !important;
+    }
+  }
 }

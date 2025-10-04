@@ -1,0 +1,86 @@
+@use '@angular/material' as mat;
+
+// Dark theme support
+.dark & {
+  .mat-mdc-form-field {
+    .mdc-text-field--outlined {
+      .mdc-notched-outline {
+        border-color: theme('colors.neutral.600');
+      }
+      
+      &:hover .mdc-notched-outline {
+        border-color: theme('colors.neutral.500');
+      }
+      
+      &.mdc-text-field--focused .mdc-notched-outline {
+        border-color: theme('colors.accent.400');
+      }
+    }
+    
+    .mdc-floating-label {
+      color: theme('colors.neutral.400');
+      
+      &.mdc-floating-label--float-above {
+        color: theme('colors.accent.400');
+      }
+    }
+    
+    .mdc-text-field__input {
+      color: theme('colors.neutral.100');
+      
+      &::placeholder {
+        color: theme('colors.neutral.500');
+      }
+    }
+  }
+  
+  .mat-mdc-select {
+    .mdc-select__anchor {
+      border-color: theme('colors.neutral.600');
+      
+      .mdc-select__selected-text {
+        color: theme('colors.neutral.100');
+      }
+    }
+    
+    .mdc-select__dropdown-icon {
+      color: theme('colors.neutral.400');
+    }
+    
+    &:hover .mdc-select__anchor {
+      border-color: theme('colors.neutral.500');
+    }
+    
+    &.mdc-select--focused .mdc-select__anchor {
+      border-color: theme('colors.accent.400');
+    }
+  }
+  
+  .mat-mdc-form-field textarea {
+    color: theme('colors.neutral.100');
+    
+    &::placeholder {
+      color: theme('colors.neutral.500');
+    }
+  }
+  
+  .mat-mdc-hint {
+    color: theme('colors.neutral.400');
+  }
+  
+  .mat-mdc-stroked-button {
+    border-color: theme('colors.neutral.600');
+    color: theme('colors.neutral.300');
+    
+    &:hover {
+      background-color: theme('colors.neutral.800');
+      border-color: theme('colors.neutral.500');
+    }
+  }
+  
+  kbd {
+    background-color: theme('colors.neutral.700');
+    color: theme('colors.neutral.300');
+    border-color: theme('colors.neutral.600');
+  }
+}

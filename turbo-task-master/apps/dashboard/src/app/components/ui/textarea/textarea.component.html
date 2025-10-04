@@ -1,0 +1,46 @@
+<mat-form-field 
+  [appearance]="appearance" 
+  [class]="getFormFieldClasses()"
+  [matTooltip]="tooltip"
+  [matTooltipPosition]="tooltipPosition">
+  
+  <mat-label *ngIf="label">{{ label }}</mat-label>
+  
+  <textarea
+    matInput
+    [placeholder]="placeholder || ''"
+    [disabled]="disabled"
+    [readonly]="readonly"
+    [attr.maxlength]="maxLength || null"
+    [attr.minlength]="minLength || null"
+    [rows]="rows"
+    [cols]="cols"
+    [value]="value"
+    (input)="onInput($event)"
+    (blur)="onBlur()"
+    (focus)="onFocus()"
+    [class]="textareaClass">
+  </textarea>
+  
+  <mat-icon 
+    *ngIf="prefixIcon" 
+    matPrefix 
+    [fontIcon]="prefixIcon"
+    [class]="prefixIconClass">
+  </mat-icon>
+  
+  <mat-icon 
+    *ngIf="suffixIcon" 
+    matSuffix 
+    [fontIcon]="suffixIcon"
+    [class]="suffixIconClass">
+  </mat-icon>
+  
+  <mat-hint *ngIf="hint" [align]="hintAlign">{{ hint }}</mat-hint>
+  
+  <mat-hint *ngIf="showCharCount && maxLength" align="end">
+    {{ (value.length || 0) }}/{{ maxLength }}
+  </mat-hint>
+  
+  <mat-error *ngIf="errorMessage">{{ errorMessage }}</mat-error>
+</mat-form-field>

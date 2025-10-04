@@ -1,28 +1,33 @@
-    <div class="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <div class="min-h-screen flex flex-col bg-neutral-50 dark:bg-neutral-900 transition-colors duration-300">
       <!-- Sticky Header -->
       <app-header />
 
-      <!-- Main Content -->
-      <main class="flex-1">
-        <router-outlet></router-outlet>
-      </main>
+      <!-- Main Content Area -->
+      <div class="flex-1 flex flex-col min-h-0">
+        <!-- Main Content -->
+        <main class="flex-1 overflow-auto">
+          <router-outlet></router-outlet>
+        </main>
 
-      <!-- Sticky Footer -->
-      <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 transition-colors duration-300">
-        <div class="w-full max-w-[140rem] mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div class="flex items-center space-x-2">
-              <mat-icon fontIcon="task_alt" class="text-blue-600 dark:text-blue-400"></mat-icon>
-              <span class="text-sm font-medium text-gray-600 dark:text-gray-300">
-                &copy; 2025 Turbo Task Manager. All rights reserved.
-              </span>
-            </div>
-            <div class="flex items-center space-x-6 text-sm text-gray-500 dark:text-gray-400">
-              <a href="#" class="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Privacy Policy</a>
-              <a href="#" class="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Terms of Service</a>
-              <a href="#" class="hover:text-gray-700 dark:hover:text-gray-300 transition-colors">Support</a>
+        <!-- Sticky Footer -->
+        <footer class="sticky bottom-0 bg-white dark:bg-neutral-800 border-t border-neutral-200 dark:border-neutral-700 transition-colors duration-300 z-10">
+          <div class="w-full max-w-[140rem] mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+              <div class="flex items-center space-x-3">
+                <div class="p-2 bg-accent-100 dark:bg-accent-900/30 rounded-lg">
+                  <mat-icon fontIcon="task_alt" class="text-accent-600 dark:text-accent-400 text-lg"></mat-icon>
+                </div>
+                <span class="text-sm font-medium text-neutral-600 dark:text-neutral-300">
+                  &copy; 2025 Turbo Task Manager. All rights reserved.
+                </span>
+              </div>
+              <div class="flex items-center space-x-6 text-sm text-neutral-500 dark:text-neutral-400">
+                <a href="#" class="hover:text-neutral-700 dark:hover:text-neutral-300 transition-colors duration-200 font-medium">Privacy Policy</a>
+                <a href="#" class="hover:text-neutral-700 dark:hover:text-neutral-300 transition-colors duration-200 font-medium">Terms of Service</a>
+                <a href="#" class="hover:text-neutral-700 dark:hover:text-neutral-300 transition-colors duration-200 font-medium">Support</a>
+              </div>
             </div>
           </div>
-        </div>
-      </footer>
+        </footer>
+      </div>
     </div>

@@ -1,0 +1,100 @@
+@use '@angular/material' as mat;
+@use '../ui-theme.scss' as theme;
+
+.app-input {
+  // Include base component styles
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  transition: all 0.2s ease-in-out;
+  
+  &:focus-visible {
+    outline: 2px solid var(--ui-primary);
+    outline-offset: 2px;
+  }
+  width: 100%;
+  margin-bottom: 0;
+
+  .mat-mdc-form-field {
+    background-color: transparent !important;
+    width: 100%;
+    margin-bottom: 0;
+    
+    .mdc-text-field--outlined {
+      .mdc-notched-outline {
+        border-color: var(--ui-border-primary);
+        border-radius: 12px;
+        transition: border-color 0.2s ease-in-out;
+      }
+      
+      &:hover .mdc-notched-outline {
+        border-color: var(--ui-border-hover);
+      }
+      
+      &.mdc-text-field--focused .mdc-notched-outline {
+        border-color: var(--ui-border-focus);
+        border-width: 2px;
+      }
+    }
+    
+    .mdc-floating-label {
+      color: var(--ui-text-secondary);
+      font-weight: 500;
+      
+      &.mdc-floating-label--float-above {
+        color: var(--ui-primary);
+      }
+    }
+    
+    .mdc-text-field__input {
+      color: var(--ui-text-primary);
+      font-size: 16px;
+      padding: 16px 14px 8px 14px;
+      background-color: transparent;
+      
+      &::placeholder {
+        color: var(--ui-text-placeholder);
+      }
+    }
+
+    .mat-mdc-form-field-icon-prefix,
+    .mat-mdc-form-field-icon-suffix {
+      color: var(--ui-text-secondary);
+    }
+  }
+
+  // Error state
+  &--error {
+    .mat-mdc-form-field {
+      .mdc-text-field--outlined .mdc-notched-outline {
+        border-color: var(--ui-error);
+      }
+    }
+  }
+
+  // Disabled state
+  &--disabled {
+    .mat-mdc-form-field {
+      .mdc-text-field--outlined .mdc-notched-outline {
+        border-color: var(--ui-text-disabled);
+        background-color: var(--ui-background-disabled);
+      }
+      
+      .mdc-floating-label {
+        color: var(--ui-text-disabled);
+      }
+      
+      .mdc-text-field__input {
+        color: var(--ui-text-disabled);
+      }
+    }
+  }
+
+  // Readonly state
+  &--readonly {
+    .mat-mdc-form-field {
+      .mdc-text-field--outlined .mdc-notched-outline {
+        border-color: var(--ui-text-disabled);
+        background-color: var(--ui-background-hover);
+      }
+    }
+  }
+}

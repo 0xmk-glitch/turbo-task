@@ -1,0 +1,13 @@
+@use '@angular/material' as mat;
+
+// Import all component styles
+@import 'create-task-panel';
+@import 'form-field';
+@import 'select-field';
+@import 'textarea';
+@import 'error-messages';
+@import 'hint-text';
+@import 'buttons';
+@import 'loading-animation';
+@import 'keyboard-shortcuts';
+@import 'dark-theme';

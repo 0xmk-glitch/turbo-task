@@ -1,47 +1,69 @@
 // Import Angular Material prebuilt theme
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
-// Custom component styles
+// Minimal design system for Angular Material components
 .mat-mdc-card {
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 1px rgba(0, 0, 0, 0.03);
   background: #ffffff;
+  border: 1px solid theme('colors.neutral.200');
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   
-  .dark-theme & {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    background: #1e1e1e;
+  &:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.03);
+    transform: translateY(-2px);
+  }
+  
+  &:active {
+    transform: translateY(0);
+    transition: transform 0.1s ease-out;
+  }
+  
+  .dark & {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.1);
+    background: theme('colors.neutral.800');
+    border-color: theme('colors.neutral.700');
+    
+    &:hover {
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
   }
 }
 
-// Theme-specific form field styling
+// Minimal form field styling
 .mat-mdc-form-field {
   .mdc-text-field--outlined {
     .mdc-notched-outline {
-      border-color: #d1d5db;
+      border-color: theme('colors.neutral.300');
+      border-radius: 8px;
+      transition: border-color 0.2s ease-in-out;
     }
     
     &:hover .mdc-notched-outline {
-      border-color: #9ca3af;
+      border-color: theme('colors.neutral.400');
     }
     
     &.mdc-text-field--focused .mdc-notched-outline {
-      border-color: #3b82f6;
+      border-color: theme('colors.accent.500');
+      border-width: 2px;
     }
   }
   
   .mdc-floating-label {
-    color: #374151;
+    color: theme('colors.neutral.600');
+    font-weight: 500;
     
     &.mdc-floating-label--float-above {
-      color: #3b82f6;
+      color: theme('colors.accent.600');
     }
   }
   
   .mdc-text-field__input {
-    color: #111827;
+    color: theme('colors.neutral.900');
+    font-weight: 400;
     
     &::placeholder {
-      color: #9ca3af;
+      color: theme('colors.neutral.400');
     }
   }
   
@@ -55,155 +77,391 @@
       color: #ef4444;
     }
   }
+  
+  // Dark theme
+  .dark & {
+    .mdc-text-field--outlined .mdc-notched-outline {
+      border-color: theme('colors.neutral.600');
+    }
+    
+    &:hover .mdc-text-field--outlined .mdc-notched-outline {
+      border-color: theme('colors.neutral.500');
+    }
+    
+    &.mdc-text-field--focused .mdc-text-field--outlined .mdc-notched-outline {
+      border-color: theme('colors.accent.400');
+    }
+    
+    .mdc-floating-label {
+      color: theme('colors.neutral.400');
+      
+      &.mdc-floating-label--float-above {
+        color: theme('colors.accent.400');
+      }
+    }
+    
+    .mdc-text-field__input {
+      color: theme('colors.neutral.100');
+      
+      &::placeholder {
+        color: theme('colors.neutral.500');
+      }
+    }
+  }
 }
 
-// Select field styling
+// Minimal select field styling
 .mat-mdc-select {
   .mdc-select__anchor {
     border-radius: 8px;
     min-height: 48px;
     padding: 12px 16px;
     transition: all 0.2s ease-in-out;
+    border-color: theme('colors.neutral.300');
     
     .mdc-select__selected-text {
-      color: #111827;
+      color: theme('colors.neutral.900');
       font-size: 0.875rem;
+      font-weight: 400;
     }
   }
   
   .mdc-select__dropdown-icon {
-    color: #6b7280;
+    color: theme('colors.neutral.500');
   }
   
   &:hover .mdc-select__anchor {
-    border-color: #9ca3af;
+    border-color: theme('colors.neutral.400');
   }
   
   &.mdc-select--focused .mdc-select__anchor {
-    border-color: #3b82f6;
+    border-color: theme('colors.accent.500');
     border-width: 2px;
+  }
+  
+  // Dark theme
+  .dark & {
+    .mdc-select__anchor {
+      border-color: theme('colors.neutral.600');
+      
+      .mdc-select__selected-text {
+        color: theme('colors.neutral.100');
+      }
+    }
+    
+    .mdc-select__dropdown-icon {
+      color: theme('colors.neutral.400');
+    }
+    
+    &:hover .mdc-select__anchor {
+      border-color: theme('colors.neutral.500');
+    }
+    
+    &.mdc-select--focused .mdc-select__anchor {
+      border-color: theme('colors.accent.400');
+    }
   }
 }
 
-// Button styling
+// Minimal button styling
 .mat-mdc-button {
   border-radius: 8px;
   text-transform: none;
   font-weight: 500;
-  transition: all 0.2s ease-in-out;
-}
-
-.mat-mdc-raised-button {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Inter', system-ui, sans-serif;
+  position: relative;
+  overflow: hidden;
   
-  &:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    transform: translateY(-1px);
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+  
+  &:hover::before {
+    left: 100%;
   }
 }
 
-// Error messages
+.mat-mdc-raised-button {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 1px rgba(0, 0, 0, 0.03);
+  font-weight: 500;
+  
+  &:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.03);
+    transform: translateY(-2px) scale(1.02);
+  }
+  
+  &:active {
+    transform: translateY(0) scale(0.98);
+    transition: transform 0.1s ease-out;
+  }
+}
+
+.mat-mdc-stroked-button {
+  border-color: theme('colors.neutral.300');
+  color: theme('colors.neutral.700');
+  
+  &:hover {
+    background-color: theme('colors.neutral.50');
+    border-color: theme('colors.neutral.400');
+  }
+  
+  .dark & {
+    border-color: theme('colors.neutral.600');
+    color: theme('colors.neutral.300');
+    
+    &:hover {
+      background-color: theme('colors.neutral.800');
+      border-color: theme('colors.neutral.500');
+    }
+  }
+}
+
+// Minimal error and hint styling
 .mat-mdc-error {
   color: #ef4444;
   font-size: 0.75rem;
   margin-top: 4px;
   display: block;
+  font-weight: 500;
 }
 
-// Hint text
 .mat-mdc-hint {
-  color: #6b7280;
+  color: theme('colors.neutral.500');
   font-size: 0.75rem;
   margin-top: 4px;
+  font-weight: 400;
+  
+  .dark & {
+    color: theme('colors.neutral.400');
+  }
 }
 
-// Dialog styling
+// Minimal dialog styling
 .mat-mdc-dialog-container {
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 16px;
+  box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+  border: 1px solid theme('colors.neutral.200');
   
   .mdc-dialog__surface {
-    border-radius: 12px;
+    border-radius: 16px;
   }
   
   .mdc-dialog__title {
     font-size: 1.25rem;
     font-weight: 600;
-    color: #111827;
+    color: theme('colors.neutral.900');
     padding: 24px 24px 0 24px;
+    font-family: 'Inter', system-ui, sans-serif;
   }
   
   .mdc-dialog__content {
     padding: 24px;
-    color: #374151;
+    color: theme('colors.neutral.700');
+    font-family: 'Inter', system-ui, sans-serif;
   }
   
   .mdc-dialog__actions {
     padding: 0 24px 24px 24px;
-    border-top: 1px solid #e5e7eb;
+    border-top: 1px solid theme('colors.neutral.200');
     margin-top: 16px;
     padding-top: 16px;
   }
-}
-
-// Task board specific styles
-.task-board {
-  .mat-mdc-card {
-    border: 1px solid #e0e0e0;
+  
+  .dark & {
+    border-color: theme('colors.neutral.700');
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.3), 0 10px 10px rgba(0, 0, 0, 0.2);
     
-    .dark-theme & {
-      border-color: #424242;
+    .mdc-dialog__title {
+      color: theme('colors.neutral.100');
+    }
+    
+    .mdc-dialog__content {
+      color: theme('colors.neutral.300');
+    }
+    
+    .mdc-dialog__actions {
+      border-top-color: theme('colors.neutral.700');
     }
   }
 }
 
-// Priority indicators
+// Minimal task board styling
+.task-board {
+  .mat-mdc-card {
+    border: 1px solid theme('colors.neutral.200');
+    transition: all 0.2s ease-in-out;
+    
+    &:hover {
+      border-color: theme('colors.neutral.300');
+    }
+    
+    .dark & {
+      border-color: theme('colors.neutral.700');
+      
+      &:hover {
+        border-color: theme('colors.neutral.600');
+      }
+    }
+  }
+}
+
+// Minimal priority indicators
 .priority-low {
-  color: #4caf50;
+  color: theme('colors.green.600');
+  background-color: theme('colors.green.50');
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  
+  .dark & {
+    color: theme('colors.green.400');
+    background-color: theme('colors.green.900/20');
+  }
 }
 
 .priority-medium {
-  color: #ff9800;
+  color: theme('colors.orange.600');
+  background-color: theme('colors.orange.50');
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  
+  .dark & {
+    color: theme('colors.orange.400');
+    background-color: theme('colors.orange.900/20');
+  }
 }
 
 .priority-high {
-  color: #f44336;
+  color: theme('colors.red.600');
+  background-color: theme('colors.red.50');
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  
+  .dark & {
+    color: theme('colors.red.400');
+    background-color: theme('colors.red.900/20');
+  }
 }
 
 .priority-urgent {
-  color: #9c27b0;
-  font-weight: bold;
+  color: theme('colors.purple.600');
+  background-color: theme('colors.purple.50');
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  
+  .dark & {
+    color: theme('colors.purple.400');
+    background-color: theme('colors.purple.900/20');
+  }
 }
 
-// Status indicators
+// Minimal status indicators
 .status-todo {
-  background-color: #e3f2fd;
-  color: #1976d2;
+  background-color: theme('colors.accent.50');
+  color: theme('colors.accent.700');
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid theme('colors.accent.200');
   
-  .dark-theme & {
-    background-color: #1a237e;
-    color: #90caf9;
+  .dark & {
+    background-color: theme('colors.accent.900/20');
+    color: theme('colors.accent.300');
+    border-color: theme('colors.accent.800');
   }
 }
 
 .status-in-progress {
-  background-color: #fff3e0;
-  color: #f57c00;
+  background-color: theme('colors.orange.50');
+  color: theme('colors.orange.700');
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid theme('colors.orange.200');
   
-  .dark-theme & {
-    background-color: #e65100;
-    color: #ffb74d;
+  .dark & {
+    background-color: theme('colors.orange.900/20');
+    color: theme('colors.orange.300');
+    border-color: theme('colors.orange.800');
   }
 }
 
 .status-done {
-  background-color: #e8f5e8;
-  color: #388e3c;
+  background-color: theme('colors.green.50');
+  color: theme('colors.green.700');
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid theme('colors.green.200');
   
-  .dark-theme & {
-    background-color: #1b5e20;
-    color: #a5d6a7;
+  .dark & {
+    background-color: theme('colors.green.900/20');
+    color: theme('colors.green.300');
+    border-color: theme('colors.green.800');
   }
 }
 
-// Icon container fixes to prevent clipping - using Tailwind classes instead
+// Minimal icon button styling
+.mat-mdc-icon-button {
+  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s;
+  }
+  
+  &:hover {
+    background-color: theme('colors.neutral.100');
+    transform: scale(1.1);
+    
+    &::before {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  
+  &:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease-out;
+  }
+  
+  .dark & {
+    &:hover {
+      background-color: theme('colors.neutral.700');
+      
+      &::before {
+        background: rgba(255, 255, 255, 0.1);
+      }
+    }
+  }
+}
+

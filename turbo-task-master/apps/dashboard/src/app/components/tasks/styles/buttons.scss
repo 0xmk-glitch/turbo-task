@@ -1,0 +1,35 @@
+@use '@angular/material' as mat;
+
+// Button styling
+.mat-mdc-button {
+  border-radius: 12px;
+  font-weight: 600;
+  text-transform: none;
+  padding: 12px 24px;
+  min-width: 120px;
+  transition: all 0.2s ease-in-out;
+  
+  &.mat-mdc-raised-button {
+    box-shadow: theme('boxShadow.soft');
+    
+    &:hover {
+      box-shadow: theme('boxShadow.soft-md');
+      transform: translateY(-1px);
+    }
+    
+    &:active {
+      transform: translateY(0);
+      box-shadow: theme('boxShadow.soft');
+    }
+  }
+  
+  &.mat-mdc-stroked-button {
+    border-color: theme('colors.neutral.300');
+    color: theme('colors.neutral.700');
+    
+    &:hover {
+      background-color: theme('colors.neutral.50');
+      border-color: theme('colors.neutral.400');
+    }
+  }
+}

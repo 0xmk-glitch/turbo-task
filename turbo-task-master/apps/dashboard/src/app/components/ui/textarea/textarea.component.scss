@@ -1,0 +1,107 @@
+@use '@angular/material' as mat;
+@use '../ui-theme.scss' as theme;
+
+.app-textarea {
+  // Include base component styles
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  transition: all 0.2s ease-in-out;
+  
+  &:focus-visible {
+    outline: 2px solid var(--ui-primary);
+    outline-offset: 2px;
+  }
+  width: 100%;
+  margin-bottom: 0;
+
+  .mat-mdc-form-field {
+    background-color: transparent !important;
+    width: 100%;
+    margin-bottom: 0;
+    
+    .mdc-text-field--outlined {
+      .mdc-notched-outline {
+        border-color: var(--ui-border-primary);
+        border-radius: 12px;
+        transition: border-color 0.2s ease-in-out;
+      }
+      
+      &:hover .mdc-notched-outline {
+        border-color: var(--ui-border-hover);
+      }
+      
+      &.mdc-text-field--focused .mdc-notched-outline {
+        border-color: var(--ui-border-focus);
+        border-width: 2px;
+      }
+    }
+    
+    .mdc-floating-label {
+      color: var(--ui-text-secondary);
+      font-weight: 500;
+      
+      &.mdc-floating-label--float-above {
+        color: var(--ui-primary);
+      }
+    }
+  }
+
+  textarea {
+    min-height: 100px;
+    resize: vertical;
+    font-family: inherit;
+    line-height: 1.6;
+    font-size: 16px;
+    padding: 16px 14px 8px 14px;
+    color: var(--ui-text-primary);
+    border: none !important;
+    outline: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    background-image: none !important;
+    width: 100%;
+    
+    &::placeholder {
+      color: var(--ui-text-placeholder);
+      font-size: 16px;
+    }
+  }
+
+  // Error state
+  &--error {
+    .mat-mdc-form-field .mdc-text-field--outlined .mdc-notched-outline {
+      border-color: var(--ui-error);
+    }
+  }
+
+  // Disabled state
+  &--disabled {
+    .mat-mdc-form-field {
+      .mdc-text-field--outlined .mdc-notched-outline {
+        border-color: var(--ui-text-disabled);
+      }
+      
+      .mdc-floating-label {
+        color: var(--ui-text-disabled);
+      }
+    }
+    
+    textarea {
+      color: var(--ui-text-disabled);
+    }
+  }
+
+  // Readonly state
+  &--readonly {
+    .mat-mdc-form-field .mdc-text-field--outlined .mdc-notched-outline {
+      border-color: var(--ui-text-disabled);
+      background-color: var(--ui-background-hover);
+    }
+  }
+
+  // Character count styling
+  .mat-mdc-hint[align="end"] {
+    color: var(--ui-text-secondary);
+    font-size: 0.75rem;
+    font-weight: 400;
+  }
+}

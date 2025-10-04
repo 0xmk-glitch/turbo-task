@@ -1,0 +1,10 @@
+@use '@angular/material' as mat;
+
+// Error messages
+.mat-mdc-error {
+  color: #ef4444;
+  font-size: 0.75rem;
+  margin-top: 4px;
+  display: block;
+  font-weight: 500;
+}

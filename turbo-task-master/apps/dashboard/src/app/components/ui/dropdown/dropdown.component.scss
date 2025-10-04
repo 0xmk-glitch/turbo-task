@@ -1,0 +1,103 @@
+@use '@angular/material' as mat;
+@use '../ui-theme.scss' as theme;
+
+.app-dropdown {
+  // Include base component styles
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  transition: all 0.2s ease-in-out;
+  
+  &:focus-visible {
+    outline: 2px solid var(--ui-primary);
+    outline-offset: 2px;
+  }
+  width: 100%;
+  margin-bottom: 0;
+
+  .mat-mdc-form-field {
+    background-color: transparent !important;
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  .mat-mdc-select {
+    .mdc-select__anchor {
+      border-radius: 12px;
+      min-height: 56px;
+      padding: 16px 14px 8px 14px;
+      border-color: var(--ui-border-primary);
+      background-color: transparent;
+      
+      .mdc-select__selected-text {
+        color: var(--ui-text-primary);
+        font-size: 16px;
+        font-weight: 400;
+      }
+      
+      .mdc-select__placeholder {
+        color: var(--ui-text-placeholder);
+      }
+    }
+    
+    .mdc-select__dropdown-icon {
+      color: var(--ui-text-secondary);
+    }
+    
+    &:hover .mdc-select__anchor {
+      border-color: var(--ui-border-hover);
+    }
+    
+    &.mdc-select--focused .mdc-select__anchor {
+      border-color: var(--ui-border-focus);
+      border-width: 2px;
+    }
+  }
+
+  // Error state
+  &--error {
+    .mat-mdc-select .mdc-select__anchor {
+      border-color: var(--ui-error);
+    }
+  }
+
+  // Disabled state
+  &--disabled {
+    .mat-mdc-select {
+      .mdc-select__anchor {
+        border-color: var(--ui-text-disabled);
+        background-color: var(--ui-background-disabled);
+      }
+      
+      .mdc-select__selected-text {
+        color: var(--ui-text-disabled);
+      }
+      
+      .mdc-select__dropdown-icon {
+        color: var(--ui-text-disabled);
+      }
+    }
+  }
+
+  // Option styling
+  .mat-mdc-option {
+    padding: 12px 16px;
+    min-height: 48px;
+    
+    &:hover:not(.mdc-list-item--disabled) {
+      background-color: var(--ui-background-hover);
+    }
+    
+    &.mdc-list-item--selected {
+      background-color: var(--ui-primary);
+      color: white;
+    }
+  }
+
+  // Multiple selection styling
+  .mat-mdc-select[multiple] {
+    .mdc-select__selected-text {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+  }
+}

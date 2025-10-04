@@ -18,15 +18,15 @@
   <div class="space-y-6">
     <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="space-y-6">
       <!-- Basic Information -->
-      <div class="space-y-4">
+      <div class="space-y-4" >
         <h3 class="text-lg font-medium text-gray-900 dark:text-white flex items-center">
           <mat-icon fontIcon="info" class="mr-2 text-gray-600 dark:text-gray-400"></mat-icon>
           Basic Information
         </h3>
         
         <!-- Title -->
-        <mat-form-field  class="w-full">
-          <mat-label>Task Title *</mat-label>
+        <mat-form-field  class="w-full"  appearance="fill">
+          <mat-label>Task Title</mat-label>
           <input 
             matInput 
             formControlName="title" 
@@ -41,7 +41,7 @@
         </mat-form-field>
 
         <!-- Type -->
-        <mat-form-field  class="w-full">
+        <mat-form-field  class="w-full"  appearance="fill">
           <mat-label>Task Type *</mat-label>
           <mat-select formControlName="type">
             <mat-option value="work">
@@ -69,7 +69,7 @@
         </mat-form-field>
 
         <!-- Description -->
-        <mat-form-field  class="w-full">
+        <mat-form-field  class="w-full" appearance="fill">
           <mat-label>Description</mat-label>
           <textarea 
             matInput 

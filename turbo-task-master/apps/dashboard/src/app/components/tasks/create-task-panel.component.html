@@ -1,0 +1,158 @@
+<!-- Right Side Panel Container -->
+<div class="fixed inset-y-0 right-0 w-full max-w-2xl bg-white dark:bg-neutral-900 shadow-soft-xl border-l border-neutral-200 dark:border-neutral-700 transform transition-transform duration-300 ease-in-out z-50 flex flex-col animate-slide-right">
+  <!-- Panel Header -->
+  <div class="flex items-center justify-between p-6 border-b border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800">
+    <div class="flex items-center space-x-4">
+      <div class="p-3 bg-accent-100 dark:bg-accent-900/30 rounded-2xl shadow-soft">
+        <mat-icon [fontIcon]="isEditMode ? 'edit' : 'add'" class="text-accent-600 dark:text-accent-400 text-2xl"></mat-icon>
+      </div>
+      <div>
+        <h2 class="text-2xl font-semibold text-neutral-900 dark:text-white">
+          {{ isEditMode ? 'Edit Task' : 'Create New Task' }}
+        </h2>
+        <p class="text-sm text-neutral-600 dark:text-neutral-400">
+          {{ isEditMode ? 'Update your task details' : 'Fill in the details to create a new task' }}
+        </p>
+      </div>
+    </div>
+    <button 
+      mat-icon-button 
+      (click)="onCancel()"
+      class="hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded-xl transition-colors duration-200"
+      matTooltip="Close (Esc)">
+      <mat-icon fontIcon="close" class="text-neutral-600 dark:text-neutral-400"></mat-icon>
+    </button>
+  </div>
+
+  <!-- Scrollable Content Area -->
+  <div class="flex-1 overflow-y-auto">
+    <div class="p-6 space-y-8">
+      <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="space-y-8">
+        <!-- Basic Information Section -->
+        <div class="space-y-6">
+          <div class="flex items-center space-x-3">
+            <div class="p-2 bg-accent-100 dark:bg-accent-900/30 rounded-xl">
+              <mat-icon fontIcon="info" class="text-accent-600 dark:text-accent-400"></mat-icon>
+            </div>
+            <h3 class="text-lg font-semibold text-neutral-900 dark:text-white">Basic Information</h3>
+          </div>
+          
+          <!-- Title Field -->
+          <app-input
+            formControlName="title"
+            label="Task Title *"
+            placeholder="Enter task title"
+            [required]="true"
+            [errorMessage]="getTitleErrorMessage()">
+          </app-input>
+
+          <!-- Type Field -->
+          <app-dropdown
+            formControlName="type"
+            label="Task Type *"
+            [options]="taskTypeOptions"
+            [required]="true"
+            [errorMessage]="getTypeErrorMessage()">
+          </app-dropdown>
+
+          <!-- Description Field -->
+          <app-textarea
+            formControlName="description"
+            label="Description"
+            placeholder="Enter task description"
+            [rows]="4"
+            [maxLength]="500"
+            [showCharCount]="true">
+          </app-textarea>
+        </div>
+
+        <!-- Task Details Section -->
+        <div class="space-y-6">
+          <div class="flex items-center space-x-3">
+            <div class="p-2 bg-orange-100 dark:bg-orange-900/30 rounded-xl">
+              <mat-icon fontIcon="settings" class="text-orange-600 dark:text-orange-400"></mat-icon>
+            </div>
+            <h3 class="text-lg font-semibold text-neutral-900 dark:text-white">Task Details</h3>
+          </div>
+          
+          <!-- Priority Field -->
+          <app-dropdown
+            formControlName="priority"
+            label="Priority"
+            [options]="priorityOptions">
+          </app-dropdown>
+
+          <!-- Status Field (only for edit mode) -->
+          <app-dropdown
+            *ngIf="isEditMode"
+            formControlName="status"
+            label="Status"
+            [options]="statusOptions">
+          </app-dropdown>
+
+          <!-- Due Date Field -->
+          <app-input
+            formControlName="dueDate"
+            label="Due Date"
+            placeholder="Select due date"
+            type="text"
+            suffixIcon="calendar_today"
+            [readonly]="true"
+            (click)="picker.open()">
+          </app-input>
+          <mat-datepicker #picker></mat-datepicker>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Panel Footer -->
+  <div class="p-6 border-t border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800">
+    <div class="flex flex-col sm:flex-row justify-between items-center space-y-3 sm:space-y-0 sm:space-x-4">
+      <!-- Keyboard Shortcuts Info -->
+      <div class="text-xs text-neutral-500 dark:text-neutral-400">
+        <span class="font-medium">Shortcuts:</span> 
+        <kbd class="px-2 py-1 bg-neutral-200 dark:bg-neutral-700 rounded text-xs">Ctrl+N</kbd> Focus title, 
+        <kbd class="px-2 py-1 bg-neutral-200 dark:bg-neutral-700 rounded text-xs">Esc</kbd> Close
+      </div>
+      
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
+        <app-button
+          type="outline"
+          label="Cancel"
+          icon="close"
+          (clicked)="onCancel()"
+          [disabled]="isLoading"
+          [fullWidth]="true"
+          class="order-2 sm:order-1">
+        </app-button>
+        
+        <app-button
+          *ngIf="!isEditMode"
+          type="outline"
+          label="Save & New"
+          icon="add"
+          (clicked)="onSaveAndNew()"
+          [disabled]="taskForm.invalid || isLoading"
+          [fullWidth]="true"
+          class="order-3 sm:order-2">
+        </app-button>
+        
+        <app-button
+          type="primary"
+          [label]="isEditMode ? 'Update Task' : 'Create Task'"
+          [icon]="isEditMode ? 'save' : 'add'"
+          (clicked)="onSubmit()"
+          [disabled]="taskForm.invalid || isLoading"
+          [loading]="isLoading"
+          [fullWidth]="true"
+          class="order-1 sm:order-3">
+        </app-button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Backdrop -->
+<div class="fixed inset-0 bg-black/20 backdrop-blur-sm z-40" (click)="onCancel()"></div>

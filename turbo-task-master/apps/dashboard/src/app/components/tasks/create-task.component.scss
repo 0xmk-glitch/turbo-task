@@ -6,6 +6,10 @@
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
   }
 
+  .mat-form-field {
+    background-color: transparent;  /* Remove background color */
+  }
+
   // Form field styling
   .mat-mdc-form-field {
     width: 100%;

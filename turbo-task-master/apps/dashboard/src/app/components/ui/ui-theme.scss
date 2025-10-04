@@ -1,0 +1,153 @@
+@use '@angular/material' as mat;
+
+// Global UI component theme utilities
+:root {
+  // Light theme colors
+  --ui-primary: theme('colors.accent.500');
+  --ui-primary-hover: theme('colors.accent.600');
+  --ui-primary-focus: theme('colors.accent.700');
+  --ui-text-primary: theme('colors.neutral.900');
+  --ui-text-secondary: theme('colors.neutral.600');
+  --ui-text-placeholder: theme('colors.neutral.400');
+  --ui-text-disabled: theme('colors.neutral.300');
+  --ui-border-primary: theme('colors.neutral.300');
+  --ui-border-hover: theme('colors.neutral.400');
+  --ui-border-focus: theme('colors.accent.500');
+  --ui-background: theme('colors.white');
+  --ui-background-hover: theme('colors.neutral.50');
+  --ui-background-disabled: theme('colors.neutral.100');
+  --ui-error: #ef4444;
+  --ui-success: #10b981;
+  --ui-warning: #f59e0b;
+}
+
+// Dark theme colors
+.dark {
+  --ui-primary: theme('colors.accent.400');
+  --ui-primary-hover: theme('colors.accent.300');
+  --ui-primary-focus: theme('colors.accent.500');
+  --ui-text-primary: theme('colors.neutral.100');
+  --ui-text-secondary: theme('colors.neutral.400');
+  --ui-text-placeholder: theme('colors.neutral.500');
+  --ui-text-disabled: theme('colors.neutral.600');
+  --ui-border-primary: theme('colors.neutral.600');
+  --ui-border-hover: theme('colors.neutral.500');
+  --ui-border-focus: theme('colors.accent.400');
+  --ui-background: theme('colors.neutral.900');
+  --ui-background-hover: theme('colors.neutral.800');
+  --ui-background-disabled: theme('colors.neutral.700');
+  --ui-error: #f87171;
+  --ui-success: #34d399;
+  --ui-warning: #fbbf24;
+}
+
+// Common UI component base styles
+.ui-component {
+  // Ensure consistent font family
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  // Smooth transitions
+  transition: all 0.2s ease-in-out;
+  
+  // Focus styles
+  &:focus-visible {
+    outline: 2px solid var(--ui-primary);
+    outline-offset: 2px;
+  }
+}
+
+// Form field consistency
+.mat-mdc-form-field {
+  .mdc-text-field--outlined,
+  .mdc-select--outlined {
+    .mdc-notched-outline {
+      border-color: var(--ui-border-primary);
+      background-color: transparent;
+    }
+    
+    &:hover .mdc-notched-outline {
+      border-color: var(--ui-border-hover);
+    }
+    
+    &.mdc-text-field--focused .mdc-notched-outline,
+    &.mdc-select--focused .mdc-notched-outline {
+      border-color: var(--ui-border-focus);
+      border-width: 2px;
+    }
+  }
+  
+  .mdc-floating-label {
+    color: var(--ui-text-secondary);
+    
+    &.mdc-floating-label--float-above {
+      color: var(--ui-primary);
+    }
+  }
+  
+  .mdc-text-field__input,
+  .mdc-select__selected-text {
+    color: var(--ui-text-primary);
+    background-color: transparent;
+    
+    &::placeholder {
+      color: var(--ui-text-placeholder);
+    }
+  }
+  
+  .mdc-select__placeholder {
+    color: var(--ui-text-placeholder);
+  }
+  
+  .mat-mdc-form-field-icon-prefix,
+  .mat-mdc-form-field-icon-suffix,
+  .mdc-select__dropdown-icon {
+    color: var(--ui-text-secondary);
+  }
+}
+
+// Error states
+.mat-mdc-error {
+  color: var(--ui-error);
+}
+
+// Disabled states
+.mat-mdc-form-field[disabled] {
+  .mdc-text-field--outlined .mdc-notched-outline,
+  .mdc-select--outlined .mdc-notched-outline {
+    border-color: var(--ui-text-disabled);
+    background-color: var(--ui-background-disabled);
+  }
+  
+  .mdc-floating-label,
+  .mdc-text-field__input,
+  .mdc-select__selected-text {
+    color: var(--ui-text-disabled);
+  }
+}
+
+// Button consistency
+.mat-mdc-button {
+  font-family: inherit;
+  font-weight: 600;
+  text-transform: none;
+  border-radius: 12px;
+  transition: all 0.2s ease-in-out;
+  
+  &:hover:not(:disabled) {
+    transform: translateY(-1px);
+  }
+  
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+}
+
+// Animation utilities
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
